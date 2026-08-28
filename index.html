@@ -1,212 +1,346 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-    
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PRANKOJOL</title>
+  <title>KUMPULAN VIDEO 18+</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="description"
+        content="Platform video 18+ untuk pengguna dewasa. Konten ditampilkan secara transparan dengan navigasi yang sederhana dan aman.">
 
-<style>
-:root{
---bg:#ffffff;
---text:#0f172a;
---muted:#64748b;
---line:#e2e8f0;
---btn:#111827;
---btnText:#ffffff;
---btnHover:#000000;
-}
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#111111">
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-html{
--webkit-text-size-adjust:100%;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-html,body{
-height:100%;
-}
+    body {
+      margin: 0;
+      background: #111;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
 
-body{
-font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;
-background:var(--bg);
-color:var(--text);
-overflow-x:hidden;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.appbar{
-position:sticky;
-top:0;
-z-index:20;
-background:#fff;
-border-bottom:1px solid var(--line);
-}
+    .container {
+      width: min(100% - 30px, 900px);
+      margin: auto;
+    }
 
-.bar-inner{
-max-width:1200px;
-margin:auto;
-display:flex;
-align-items:center;
-padding:10px 16px;
-}
+    header {
+      padding: 30px 0 20px;
+      border-bottom: 1px solid #2a2a2a;
+    }
 
-.brand{
-display:flex;
-align-items:center;
-gap:8px;
-font-weight:700;
-}
+    .brand {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
 
-.logo{
-width:28px;
-height:28px;
-display:grid;
-place-items:center;
-background:#111827;
-color:#fff;
-border-radius:6px;
-}
+    .notice {
+      margin-top: 10px;
+      color: #aaa;
+      font-size: 14px;
+    }
 
-.spacer{
-flex:1;
-}
+    main {
+      padding: 25px 0 50px;
+    }
 
-.btn{
-border:0;
-padding:10px 14px;
-border-radius:12px;
-background:#111827;
-color:#fff;
-font-weight:600;
-cursor:pointer;
-}
+    .card {
+      background: #1a1a1a;
+      border: 1px solid #2b2b2b;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
 
-.banner{
-max-width:1200px;
-margin:10px auto;
-padding:8px 16px;
-color:#64748b;
-}
+    .card h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
 
-.wrap{
-max-width:1200px;
-margin:auto;
-padding:16px;
-}
+    .video-list {
+      display: grid;
+      gap: 14px;
+    }
 
-.player-shell{
-display:grid;
-place-items:center;
-}
+    .video-item {
+      display: block;
+      padding: 18px;
+      background: #222;
+      border: 1px solid #333;
+      border-radius: 12px;
+      transition: .2s ease;
+    }
 
-.phone{
-width:clamp(240px,92vw,420px);
-aspect-ratio:9/16;
-border-radius:22px;
-overflow:hidden;
-background:#000;
-}
+    .video-item:hover {
+      background: #292929;
+      transform: translateY(-1px);
+    }
 
-.phone video{
-width:100%;
-height:100%;
-object-fit:cover;
-}
+    .video-title {
+      font-size: 17px;
+      font-weight: 700;
+    }
 
-.meta{
-margin-top:20px;
-text-align:center;
-color:#64748b;
-font-size:13px;
-}
-</style>
+    .video-description {
+      margin-top: 5px;
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 9px;
+      border-radius: 20px;
+      background: #333;
+      color: #ddd;
+      font-size: 12px;
+    }
+
+    footer {
+      border-top: 1px solid #2a2a2a;
+      padding: 25px 0 40px;
+      color: #999;
+      font-size: 13px;
+    }
+
+    footer a {
+      color: #ddd;
+      margin-right: 15px;
+    }
+
+    .age-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.96);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 9999;
+    }
+
+    .age-box {
+      width: min(100%, 430px);
+      background: #1b1b1b;
+      border: 1px solid #333;
+      border-radius: 16px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .age-box h1 {
+      margin-top: 0;
+      font-size: 25px;
+    }
+
+    .age-box p {
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .age-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .age-buttons button {
+      flex: 1;
+      padding: 13px;
+      border: 0;
+      border-radius: 9px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .enter {
+      background: #fff;
+      color: #111;
+    }
+
+    .leave {
+      background: #333;
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      .brand {
+        font-size: 22px;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .age-box {
+        padding: 22px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="appbar">
-<div class="bar-inner">
+  <!-- AGE GATE -->
+  <div class="age-overlay" id="ageGate">
+    <div class="age-box">
+      <h1>Konten Dewasa 18+</h1>
 
-<div class="brand">
-<span class="logo">V</span>
-<span>vldey<span style="color:#3b82f6">.co</span></span>
-</div>
+      <p>
+        Situs ini hanya diperuntukkan bagi pengunjung yang telah
+        berusia 18 tahun atau lebih.
+      </p>
 
-<div class="spacer"></div>
+      <p>
+        Dengan melanjutkan, Anda menyatakan bahwa Anda telah
+        memenuhi batas usia yang berlaku di wilayah Anda.
+      </p>
 
-<button class="btn">Upload</button>
+      <div class="age-buttons">
+        <button class="enter" id="enterBtn">
+          Saya berusia 18+
+        </button>
 
-</div>
-</header>
+        <button class="leave" id="leaveBtn">
+          Keluar
+        </button>
+      </div>
+    </div>
+  </div>
 
-<div class="banner">
-Advertise
-</div>
+  <header>
+    <div class="container">
+      <div class="brand">
+        KUMPULAN VIDEO 18+
+      </div>
 
-<main class="wrap">
-<section class="player-shell">
+      <div class="notice">
+        Konten khusus pengguna dewasa • 18+
+      </div>
+    </div>
+  </header>
 
-<div class="phone">
+  <main>
+    <div class="container">
 
-<video id="video" playsinline controls>
-<source src="VIDEO" type="video/mp4">
+      <section class="card">
+        <h2>Video Terbaru</h2>
 
-</video>
+        <div class="video-list">
 
-</div>
+          <!--
+            GANTI CONTOH DI BAWAH DENGAN KONTEN YANG
+            MEMANG KAMU MILIKI / BERHAK KAMU TAMPILKAN.
+          -->
 
-<div class="meta">
-0:00 / 3:57 • Putar untuk memulai
-</div>
+          <a class="video-item" href="/video-1.html">
+            <div class="video-title">
+              Video 18+ #1
+            </div>
 
-</section>
-</main>
+            <div class="video-description">
+              Konten khusus pengguna dewasa.
+            </div>
 
-<script>
-const v = document.getElementById('video');
-const meta = document.querySelector('.meta');
+            <span class="tag">18+</span>
+          </a>
 
-function fmt(t){
-  const m = Math.floor(t/60);
-  const s = Math.floor(t%60).toString().padStart(2,'0');
-  return `${m}:${s}`;
-}
+          <a class="video-item" href="/video-2.html">
+            <div class="video-title">
+              Video 18+ #2
+            </div>
 
-v.addEventListener('loadedmetadata', ()=>{
-  meta.textContent = `0:00 / ${fmt(v.duration)}`;
-});
+            <div class="video-description">
+              Konten khusus pengguna dewasa.
+            </div>
 
-v.addEventListener('timeupdate', ()=>{
-  meta.textContent = `${fmt(v.currentTime)} / ${fmt(v.duration)}`;
-});
-</script>
+            <span class="tag">18+</span>
+          </a>
 
-<script>
-var LINK_ID  = "https://viiukuhe.com/dc/?blockID=427920";
-var LINK_ALL = "https://viiukuhe.com/dc/?blockID=427920";
-var DELAY = 15000;
+          <a class="video-item" href="/video-3.html">
+            <div class="video-title">
+              Video 18+ #3
+            </div>
 
-function geoip(g){
-  setTimeout(function(){
-    if(g && g.country === "ID"){
-      window.top.location.href = LINK_ID;
-    }else{
-      window.top.location.href = LINK_ALL;
+            <div class="video-description">
+              Konten khusus pengguna dewasa.
+            </div>
+
+            <span class="tag">18+</span>
+          </a>
+
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Tentang Situs</h2>
+
+        <p>
+          Situs ini menyediakan konten untuk pengguna dewasa.
+          Kami berusaha menjaga tampilan situs tetap sederhana,
+          transparan, dan mudah digunakan.
+        </p>
+
+        <p>
+          Konten yang ditampilkan harus berasal dari sumber yang
+          sah dan tidak boleh melanggar hukum yang berlaku.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/dmca.html">DMCA</a>
+
+      <p>
+        © 2026 KUMPULAN VIDEO 18+. All rights reserved.
+      </p>
+
+    </div>
+  </footer>
+
+  <script>
+    const ageGate = document.getElementById("ageGate");
+    const enterBtn = document.getElementById("enterBtn");
+    const leaveBtn = document.getElementById("leaveBtn");
+
+    if (localStorage.getItem("ageConfirmed") === "yes") {
+      ageGate.style.display = "none";
     }
-  }, DELAY);
-}
-</script>
 
-<script src="https://get.geojs.io/v1/ip/country.js?callback=geoip"></script>
+    enterBtn.addEventListener("click", function () {
+      localStorage.setItem("ageConfirmed", "yes");
+      ageGate.style.display = "none";
+    });
+
+    leaveBtn.addEventListener("click", function () {
+      window.location.href = "https://www.google.com/";
+    });
+  </script>
 
 </body>
 </html>
