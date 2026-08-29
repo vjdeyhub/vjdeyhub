@@ -1,330 +1,190 @@
-const AD_LINKS = [
-  {
-    name: "Adsterra",
-    url: "https://conductivebreeds.com/ra35mrxpj?key=a22b76d988f5c2de1a58d61240df16f0"
-  },
-  {
-    name: "Kadam",
-    url: "https://viiukuhe.com/dc/?blockID=427920"
-  },
-  {
-    name: "Monetag",
-    url: "https://omg10.com/4/9813487"
-  }
-];
+document.addEventListener("DOMContentLoaded", () => {
 
-const AD_COOLDOWN = 60 * 1000;
-let lastAdTime = 0;
+const grid = document.getElementById("videoGrid");
+const searchBtn = document.querySelector(".search-btn");
+const searchBox = document.getElementById("searchBox");
+const searchInput = document.getElementById("searchInput");
 
-function openAd() {
-  const now = Date.now();
+let videos = [];
 
-  if (now - lastAdTime < AD_COOLDOWN) {
-    return false;
-  }
+searchBtn.addEventListener("click", () => {
 
-  const validLinks = AD_LINKS.filter(function(item) {
-    return item.url && item.url.startsWith("http");
-  });
+searchBox.classList.toggle("active");  
 
-  if (!validLinks.length) {
-    return false;
-  }
-
-  let index = parseInt(
-    localStorage.getItem("adIndex") || "0",
-    10
-  );
-
-  if (index >= validLinks.length) {
-    index = 0;
-  }
-
-  const selected = validLinks[index];
-
-  localStorage.setItem(
-    "adIndex",
-    String((index + 1) % validLinks.length)
-  );
-
-  lastAdTime = now;
-
-  window.open(
-    selected.url,
-    "_blank",
-    "noopener,noreferrer"
-  );
-
-  return true;
+if (searchBox.classList.contains("active")) {  
+  searchInput.focus();  
 }
 
+});
 
-/* =========================
-   LOAD VIDEOS
-========================= */
+fetch("videos.json", {
+cache: "no-cache"
+})
+.then(response => {
 
-async function loadVideos() {
-  try {
-    const response = await fetch("videos.json", {
-      cache: "no-store"
-    });
+if (!response.ok) {  
+  throw new Error("videos.json tidak ditemukan");  
+}  
 
-    if (!response.ok) {
-      throw new Error("videos.json tidak ditemukan");
-    }
+return response.json();
 
-    const videos = await response.json();
+})
+.then(data => {
 
-    renderVideoList(videos);
-    renderPlayer(videos);
+if (!Array.isArray(data) || data.length === 0) {  
+  throw new Error("Tidak ada video");  
+}  
 
-  } catch (error) {
-    console.error(error);
+videos = data;  
 
-    const list = document.getElementById("videoList");
+shuffle(videos);  
 
-    if (list) {
-      list.innerHTML = `
-        <div class="loading">
-          Video belum dapat dimuat.
-        </div>
-      `;
-    }
-  }
+render(videos);  
+
+searchInput.addEventListener("input", () => {  
+
+  const keyword =  
+    searchInput.value.trim().toLowerCase();  
+
+  const filtered = videos.filter(video =>  
+    String(video.title)  
+      .toLowerCase()  
+      .includes(keyword)  
+  );  
+
+  render(filtered);  
+
+});
+
+})
+.catch(error => {
+
+console.error(error);  
+
+grid.innerHTML = `  
+  <div class="loading">  
+    Gagal memuat video.  
+  </div>  
+`;
+
+});
+
+function shuffle(array) {
+
+for (let i = array.length - 1; i > 0; i--) {  
+
+  const j =  
+    Math.floor(Math.random() * (i + 1));  
+
+  [array[i], array[j]] =  
+  [array[j], array[i]];  
+
 }
 
-
-/* =========================
-   VIDEO LIST
-========================= */
-
-function renderVideoList(videos) {
-  const container =
-    document.getElementById("videoList");
-
-  if (!container) {
-    return;
-  }
-
-  container.innerHTML = "";
-
-  videos.forEach(function(video, index) {
-
-    const card =
-      document.createElement("a");
-
-    card.className = "video-card";
-
-    card.href =
-      "player.html?id=" +
-      encodeURIComponent(index);
-
-    card.innerHTML = `
-      <div class="thumb">
-
-        <video
-          src="${escapeHtml(video.file)}"
-          muted
-          preload="metadata"
-          playsinline
-        ></video>
-
-        <div class="play-icon">
-          ▶
-        </div>
-
-      </div>
-
-      <div class="card-content">
-
-        <div class="card-title">
-          ${escapeHtml(video.title)}
-        </div>
-
-        <div class="card-meta">
-          Video #${index + 1}
-        </div>
-
-      </div>
-    `;
-
-    container.appendChild(card);
-  });
 }
 
+function render(data) {
 
-/* =========================
-   PLAYER
-========================= */
+grid.innerHTML = "";  
 
-function renderPlayer(videos) {
-  const player =
-    document.getElementById("videoPlayer");
+if (data.length === 0) {  
 
-  if (!player) {
-    return;
-  }
+  grid.innerHTML = `  
+    <div class="loading">  
+      Video tidak ditemukan.  
+    </div>  
+  `;  
 
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
+  return;  
+}  
 
-  let id =
-    parseInt(params.get("id"), 10);
+data.forEach((video, index) => {  
 
-  if (
-    isNaN(id) ||
-    id < 0 ||
-    id >= videos.length
-  ) {
-    id = 0;
-  }
+  const card = document.createElement("a");  
 
-  const video = videos[id];
+  card.className = "video-card";  
 
-  if (!video) {
-    return;
-  }
+  /*  
+   * Menggunakan index dari array yang sudah diacak.  
+   * Data tersebut dikirim melalui URL sebagai ID.  
+   */  
+  const originalIndex =  
+    videos.indexOf(video);  
 
-  player.src = video.file;
+  card.href =  
+    "player.html?id=" + originalIndex;  
 
-  const title =
-    document.getElementById("videoTitle");
+  const thumbnail =  
+    document.createElement("div");  
 
-  const description =
-    document.getElementById("videoDescription");
+  thumbnail.className = "thumbnail";  
 
-  if (title) {
-    title.textContent = video.title;
-  }
+  const preview =  
+    document.createElement("video");  
 
-  if (description) {
-    description.textContent =
-      "Video viral terbaru. Selamat menonton.";
-  }
+  preview.src = video.file;  
+  preview.preload = "metadata";  
+  preview.muted = true;  
+  preview.playsInline = true;  
 
-  document.title =
-    video.title +
-    " - KUMPULAN VIDEO VIRAL";
+  const hd =  
+    document.createElement("span");  
 
-  renderRelated(videos, id);
+  hd.className = "hd-badge";  
+  hd.textContent = "HD";  
+
+  const time =  
+    document.createElement("span");  
+
+  time.className = "duration";  
+  time.textContent = "--:--";  
+
+  preview.addEventListener(  
+    "loadedmetadata",  
+    () => {  
+
+      if (Number.isFinite(preview.duration)) {  
+
+        time.textContent =  
+          formatTime(preview.duration);  
+
+      }  
+
+    }  
+  );  
+
+  const title =  
+    document.createElement("div");  
+
+  title.className = "card-title";  
+  title.textContent = video.title;  
+
+  thumbnail.appendChild(preview);  
+  thumbnail.appendChild(hd);  
+  thumbnail.appendChild(time);  
+
+  card.appendChild(thumbnail);  
+  card.appendChild(title);  
+
+  grid.appendChild(card);  
+
+});
+
 }
 
+function formatTime(seconds) {
 
-/* =========================
-   RELATED VIDEOS
-========================= */
+seconds = Math.floor(seconds);  
 
-function renderRelated(
-  videos,
-  currentId
-) {
-  const container =
-    document.getElementById(
-      "relatedVideos"
-    );
+const minutes =  
+  Math.floor(seconds / 60);  
 
-  if (!container) {
-    return;
-  }
+const secs =  
+  seconds % 60;  
 
-  container.innerHTML = "";
+return minutes + ":" +  
+  String(secs).padStart(2, "0");
 
-  videos.forEach(function(video, index) {
-
-    if (index === currentId) {
-      return;
-    }
-
-    if (
-      container.children.length >= 8
-    ) {
-      return;
-    }
-
-    const link =
-      document.createElement("a");
-
-    link.className =
-      "related-card";
-
-    link.href =
-      "player.html?id=" +
-      encodeURIComponent(index);
-
-    link.textContent =
-      "▶ " + video.title;
-
-    container.appendChild(link);
-  });
 }
 
-
-/* =========================
-   WATCH BUTTON
-========================= */
-
-document.addEventListener(
-  "click",
-  function(event) {
-
-    const button =
-      event.target.closest(
-        "#watchButton"
-      );
-
-    if (!button) {
-      return;
-    }
-
-    openAd();
-
-    const player =
-      document.getElementById(
-        "videoPlayer"
-      );
-
-    if (player) {
-
-      const playPromise =
-        player.play();
-
-      if (
-        playPromise &&
-        typeof playPromise.catch ===
-        "function"
-      ) {
-        playPromise.catch(
-          function() {}
-        );
-      }
-    }
-  }
-);
-
-
-/* =========================
-   ESCAPE HTML
-========================= */
-
-function escapeHtml(value) {
-  return String(value)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
-
-/* =========================
-   START
-========================= */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  function() {
-    loadVideos();
-  }
-);
+});
