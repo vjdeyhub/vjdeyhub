@@ -1,91 +1,186 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
 
-  <title>Video Viral</title>
-  <meta name="description" content="Tonton video viral terbaru.">
-  <meta name="robots" content="index,follow">
+<html lang="id">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">  <title>Video - Prankojol</title>  <link rel="stylesheet" href="style.css">  <!-- Adsterra Popunder -->  <script src="https://conductivebreeds.com/39/c7/7a/39c77ac4d358e6ab5dea254e3870bcb3.js"></script>  </head>  <body>  <header class="topbar">    <a href="index.html" class="back-btn">  
+    ←  
+  </a>    <a href="index.html" class="logo">  
+    Prank<span>ojol</span>  
+  </a>    <a href="index.html" class="home-btn">  
+    ⌂  
+  </a>  </header>  <main class="watch-page">    <div class="player">  <video  
+  id="player"  
+  controls  
+  playsinline  
+  preload="metadata">  
+</video>
 
-  <link rel="stylesheet" href="style.css">
+  </div>    <h1 id="videoTitle">  
+    Memuat video...  
+  </h1>    <div class="watch-meta">  
+    <span>HD</span>  
+    <span id="duration">--:--</span>  
+  </div>    <!-- Adsterra Smartlink -->  <a  
+class="smartlink"  
+href="https://conductivebreeds.com/baia5q85?key=d469ce4fdd08ac2bf8ef2da5edf9969f"  
+target="_blank"  
+rel="noopener noreferrer">
+🔥 LIHAT VIDEO LAINNYA
+</a>
 
-  <!-- ADSTERRA POPUNDER -->
-  <script src="https://conductivebreeds.com/db/79/3a/db793a3e57b74080ac30338894ba8a75.js"></script>
-</head>
+  <section class="related">  <h2>VIDEO LAINNYA</h2>  
 
-<body>
+<div id="relatedGrid" class="video-grid"></div>
 
-  <header class="topbar">
-
-    <a href="index.html" class="back-button">
-      ← Kembali
-    </a>
-
-    <div class="brand">
-      <h1>KUMPULAN VIDEO VIRAL</h1>
-    </div>
-
-  </header>
-
-  <main class="player-page">
-
-    <div class="video-container">
-
-      <video
-        id="videoPlayer"
-        controls
-        playsinline
-        preload="metadata"
-      >
-        Browser Anda tidak mendukung video.
-      </video>
-
-    </div>
-
-    <div class="video-title">
-
-      <h2 id="videoTitle">
-        Video Viral
-      </h2>
-
-      <p id="videoDescription">
-        Selamat menonton.
-      </p>
-
-    </div>
-
-    <div class="action-area">
-
-      <button
-        id="watchButton"
-        class="watch-button"
-        type="button"
-      >
-        ▶ TONTON VIDEO
-      </button>
-
-      <p class="ad-note">
-        Klik tombol untuk mulai menonton
-      </p>
-
-    </div>
-
-    <section class="related-section">
-
-      <h3>🔥 Video Lainnya</h3>
-
-      <div id="relatedVideos" class="related-grid"></div>
-
-    </section>
-
-  </main>
-
-  <footer class="bottom-info">
-    © KUMPULAN VIDEO VIRAL
-  </footer>
-
-  <script src="script.js"></script>
-
-</body>
+  </section>  </main>  <footer>  
+  © 2026 Prankojol  
+</footer>  <script>  
+  
+const params = new URLSearchParams(location.search);  
+  
+let id = parseInt(params.get("id") || "0", 10);  
+  
+if (!Number.isInteger(id) || id < 0) {  
+  id = 0;  
+}  
+  
+const player = document.getElementById("player");  
+const title = document.getElementById("videoTitle");  
+const duration = document.getElementById("duration");  
+const relatedGrid = document.getElementById("relatedGrid");  
+  
+fetch("videos.json")  
+.then(response => {  
+  
+  if (!response.ok) {  
+    throw new Error("videos.json tidak ditemukan");  
+  }  
+  
+  return response.json();  
+  
+})  
+.then(videos => {  
+  
+  if (!Array.isArray(videos) || videos.length === 0) {  
+    throw new Error("Video kosong");  
+  }  
+  
+  if (id >= videos.length) {  
+    id = 0;  
+  }  
+  
+  const current = videos[id];  
+  
+  player.src = current.file;  
+  title.textContent = current.title;  
+  
+  player.addEventListener("loadedmetadata", () => {  
+  
+    if (Number.isFinite(player.duration)) {  
+      duration.textContent = formatTime(player.duration);  
+    }  
+  
+  });  
+  
+  const indexes = [];  
+  
+  videos.forEach((video, index) => {  
+  
+    if (index !== id) {  
+      indexes.push(index);  
+    }  
+  
+  });  
+  
+  for (let i = indexes.length - 1; i > 0; i--) {  
+  
+    const j = Math.floor(Math.random() * (i + 1));  
+  
+    [indexes[i], indexes[j]] =  
+    [indexes[j], indexes[i]];  
+  
+  }  
+  
+  indexes.slice(0, 8).forEach(index => {  
+  
+    createCard(videos[index], index, relatedGrid);  
+  
+  });  
+  
+})  
+.catch(error => {  
+  
+  console.error(error);  
+  
+  title.textContent = "Video tidak dapat dimuat.";  
+  
+});  
+  
+function formatTime(seconds) {  
+  
+  seconds = Math.floor(seconds);  
+  
+  const minutes = Math.floor(seconds / 60);  
+  
+  const secs = seconds % 60;  
+  
+  return minutes + ":" +  
+    String(secs).padStart(2, "0");  
+  
+}  
+  
+function createCard(video, index, container) {  
+  
+  const card = document.createElement("a");  
+  
+  card.className = "video-card";  
+  card.href = "player.html?id=" + index;  
+  
+  const preview = document.createElement("video");  
+  
+  preview.src = video.file;  
+  preview.preload = "metadata";  
+  preview.muted = true;  
+  preview.playsInline = true;  
+  
+  const badge = document.createElement("span");  
+  
+  badge.className = "hd-badge";  
+  badge.textContent = "HD";  
+  
+  const time = document.createElement("span");  
+  
+  time.className = "duration";  
+  time.textContent = "--:--";  
+  
+  preview.addEventListener("loadedmetadata", () => {  
+  
+    if (Number.isFinite(preview.duration)) {  
+      time.textContent = formatTime(preview.duration);  
+    }  
+  
+  });  
+  
+  const title = document.createElement("div");  
+  
+  title.className = "card-title";  
+  title.textContent = video.title;  
+  
+  const thumb = document.createElement("div");  
+  
+  thumb.className = "thumbnail";  
+  
+  thumb.appendChild(preview);  
+  thumb.appendChild(badge);  
+  thumb.appendChild(time);  
+  
+  card.appendChild(thumb);  
+  card.appendChild(title);  
+  
+  container.appendChild(card);  
+  
+}  
+  
+</script>  </body>  
 </html>
