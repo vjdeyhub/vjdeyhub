@@ -1,0 +1,355 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #111;
+}
+
+body {
+  margin: 0;
+  background: #111;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topbar {
+  height: 90px;
+  background: #e60000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  color: #fff;
+  text-decoration: none;
+  font-size: 39px;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.logo span {
+  font-weight: 700;
+}
+
+.menu-btn,
+.search-btn,
+.back-btn,
+.home-btn {
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.menu-btn {
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgba(255,255,255,.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.menu-btn span {
+  width: 27px;
+  height: 2px;
+  background: #fff;
+}
+
+.search-btn {
+  font-size: 30px;
+}
+
+.back-btn,
+.home-btn {
+  font-size: 30px;
+}
+
+.search-box {
+  display: none;
+  background: #181818;
+  padding: 12px 18px;
+  border-bottom: 1px solid #292929;
+}
+
+.search-box.active {
+  display: block;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 13px 15px;
+  border: 0;
+  outline: 0;
+  border-radius: 7px;
+  background: #292929;
+  color: #fff;
+  font-size: 14px;
+}
+
+main {
+  width: min(94%, 1100px);
+  margin: auto;
+}
+
+.intro {
+  text-align: center;
+  padding: 88px 10px 58px;
+}
+
+.intro h1 {
+  margin: 0 0 48px;
+  font-size: 39px;
+  font-weight: 500;
+  letter-spacing: .5px;
+}
+
+.intro p {
+  margin: 0;
+  font-size: 25px;
+  line-height: 1.8;
+  color: #fff;
+}
+
+.intro p span {
+  color: #fff200;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 78px 55px;
+  padding-bottom: 60px;
+}
+
+.video-card {
+  color: #fff;
+  text-decoration: none;
+  min-width: 0;
+}
+
+.thumbnail {
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 1 / 1.27;
+}
+
+.thumbnail video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  background: #000;
+}
+
+.hd-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fff000;
+  color: #000;
+  padding: 8px 9px;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.duration {
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  background: rgba(0,0,0,.82);
+  padding: 6px 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.card-title {
+  padding-top: 17px;
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.loading {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 70px 10px;
+  color: #777;
+  font-size: 13px;
+}
+
+.watch-page {
+  width: min(96%, 850px);
+  padding: 25px 0 60px;
+}
+
+.player {
+  background: #000;
+  border: 1px solid #252525;
+}
+
+.player video {
+  display: block;
+  width: 100%;
+  max-height: 75vh;
+  background: #000;
+}
+
+.watch-page h1 {
+  margin: 20px 0 8px;
+  font-size: 22px;
+  line-height: 1.4;
+}
+
+.watch-meta {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.watch-meta span {
+  background: #ffe900;
+  color: #000;
+  padding: 5px 8px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.smartlink {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: #e60000;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 800;
+  border-radius: 5px;
+}
+
+.related {
+  margin-top: 45px;
+}
+
+.related h2 {
+  font-size: 20px;
+  margin: 0 0 25px;
+}
+
+.related .video-grid {
+  gap: 30px 20px;
+}
+
+.related .card-title {
+  font-size: 14px;
+  padding-top: 9px;
+}
+
+footer {
+  padding: 35px 10px;
+  text-align: center;
+  border-top: 1px solid #222;
+  color: #555;
+  font-size: 11px;
+}
+
+@media (max-width: 600px) {
+
+  .topbar {
+    height: 72px;
+    padding: 0 15px;
+  }
+
+  .logo {
+    font-size: 29px;
+  }
+
+  .menu-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .menu-btn span {
+    width: 21px;
+  }
+
+  .search-btn {
+    font-size: 23px;
+  }
+
+  .intro {
+    padding: 90px 5px 58px;
+  }
+
+  .intro h1 {
+    font-size: 29px;
+    margin-bottom: 38px;
+  }
+
+  .intro p {
+    font-size: 19px;
+    line-height: 1.8;
+  }
+
+  main {
+    width: 91%;
+  }
+
+  .video-grid {
+    gap: 60px 28px;
+  }
+
+  .thumbnail {
+    aspect-ratio: 1 / 1.30;
+  }
+
+  .hd-badge {
+    top: 8px;
+    right: 7px;
+    padding: 6px 7px;
+    font-size: 11px;
+  }
+
+  .duration {
+    font-size: 11px;
+    padding: 5px 6px;
+  }
+
+  .card-title {
+    padding-top: 12px;
+    font-size: 15px;
+  }
+
+  .watch-page {
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  .watch-page h1,
+  .watch-meta,
+  .smartlink,
+  .related {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  .player {
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .related .video-grid {
+    gap: 35px 12px;
+  }
+
+  }
