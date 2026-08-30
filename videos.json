@@ -1,1082 +1,502 @@
 [
-  {
+{
+    "id": 1,
     "title": "Baru kejadian hari ini bikin kaget 😱",
-    "file": "https://cdn2.slicedrive.com/jga51BqO1.mp4"
-  },
-  {
+    "url": "https://cdn2.slicedrive.com/jga51BqO1.mp4",
+    "description": "Video terbaru yang sedang ramai."
+},
+{
+    "id": 2,
     "title": "Nonton sampai akhir ga nyangka 😳",
-    "file": "https://cdn2.slicedrive.com/I0ux9fz21.mp4"
-  },
-  {
+    "url": "https://cdn2.slicedrive.com/I0ux9fz21.mp4",
+    "description": "Nonton sampai akhir."
+},
+{
+    "id": 3,
     "title": "Detik-detik yang bikin merinding 😨",
-    "file": "https://cdn2.slicedrive.com/8KnUXe8v1.mp4"
-  },
-  {
+    "url": "https://cdn2.slicedrive.com/8KnUXe8v1.mp4",
+    "description": "Detik-detik yang menarik perhatian."
+},
+{
+    "id": 4,
     "title": "Viral banget di FB hari ini 🔥",
-    "file": "https://cdn2.slicedrive.com/Z59F7Aub1.mp4"
-  },
-  {
+    "url": "https://cdn2.slicedrive.com/Z59F7Aub1.mp4",
+    "description": "Video yang sedang ramai."
+},
+{
+    "id": 5,
     "title": "Kejadian tak terduga terekam kamera 😱",
-    "file": "https://cdn2.slicedrive.com/2IR7RcU01.mp4"
-  },
-  {
+    "url": "https://cdn2.slicedrive.com/2IR7RcU01.mp4",
+    "description": "Kejadian tak terduga."
+},
+{
+    "id": 6,
     "title": "Ini alasan kenapa video ini viral 😳",
-    "file": "https://cdn2.slicedrive.com/upMbBgXL1.mp4"
-  },
-  {
+    "url": "https://cdn2.slicedrive.com/upMbBgXL1.mp4",
+    "description": "Video yang sedang diperbincangkan."
+},
+{
+    "id": 7,
     "title": "Gak banyak yang tahu fakta ini 😨",
-    "file": "https://cdn2.slicedrive.com/BNSZyboB1.mp4"
-  },
-  {
+    "url": "https://cdn2.slicedrive.com/BNSZyboB1.mp4",
+    "description": "Simak videonya sampai selesai."
+},
+{
+    "id": 8,
     "title": "Bikin geleng kepala 😱",
-    "file": "https://cdn2.slicedrive.com/NOCY5i661.mp4"
-  },
-  {
+    "url": "https://cdn2.slicedrive.com/NOCY5i661.mp4",
+    "description": "Video pilihan hari ini."
+},
+{
+    "id": 9,
     "title": "Endingnya bikin kaget 😳",
-    "file": "https://cdn2.slicedrive.com/yxgCnW1.mp4"
-  },
-  {
+    "url": "https://cdn2.slicedrive.com/yxgCnW1.mp4",
+    "description": "Jangan lewatkan bagian akhirnya."
+},
+{
+    "id": 10,
     "title": "Lagi rame dibahas netizen 🔥",
-    "file": "https://cdn2.slicedrive.com/tsnCF1Wi1.mp4"
-  },
-  {
+    "url": "https://cdn2.slicedrive.com/tsnCF1Wi1.mp4",
+    "description": "Sedang ramai di media sosial."
+},
+{
+    "id": 11,
     "title": "Gak disangka bakal kejadian 😨",
-    "file": "https://cdn2.slicedrive.com/z0p6JDEV1.mp4"
-  },
-  {
+    "url": "https://cdn2.slicedrive.com/z0p6JDEV1.mp4",
+    "description": "Kejadian yang tidak terduga."
+},
+{
+    "id": 12,
     "title": "Ini asli atau settingan? 😳",
-    "file": "https://cdn2.slicedrive.com/7ZfVyyA81.mp4"
-  },
-  {
+    "url": "https://cdn2.slicedrive.com/7ZfVyyA81.mp4",
+    "description": "Tonton dan tentukan sendiri."
+},
+{
+    "id": 13,
     "title": "Bikin netizen ribut 🔥",
-    "file": "https://cdn2.slicedrive.com/84yxgCnW1.mp4"
-  },
-  {
+    "url": "https://cdn2.slicedrive.com/84yxgCnW1.mp4",
+    "description": "Video yang mengundang perhatian."
+},
+{
+    "id": 14,
     "title": "Kejadian langka terekam kamera 😱",
-    "file": "https://cdn2.slicedrive.com/b06Rn9oP1.mp4"
-  },
-  {
+    "url": "https://cdn2.slicedrive.com/b06Rn9oP1.mp4",
+    "description": "Kejadian langka yang terekam."
+},
+{
+    "id": 15,
     "title": "Bikin semua orang kaget 😱",
-    "file": "https://cdn2.slicedrive.com/AOiEKDoG1.mp4"
-  },
-  {
+    "url": "https://cdn2.slicedrive.com/AOiEKDoG1.mp4",
+    "description": "Simak kejadian selengkapnya."
+},
+{
+    "id": 16,
     "title": "Nonton ini bikin merinding 😨",
-    "file": "https://cdn.videy.co/Is6iuGSX1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/Is6iuGSX1.mp4",
+    "description": "Video pilihan."
+},
+{
+    "id": 17,
     "title": "Gak semua orang sadar ini 😳",
-    "file": "https://cdn.videy.co/cIbSpy091.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/cIbSpy091.mp4",
+    "description": "Perhatikan videonya baik-baik."
+},
+{
+    "id": 18,
     "title": "Baru sadar setelah lihat ini 😱",
-    "file": "https://cdn.videy.co/kA7kmjzY1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/kA7kmjzY1.mp4",
+    "description": "Tonton sampai selesai."
+},
+{
+    "id": 19,
     "title": "Viral hari ini di sosial media 🔥",
-    "file": "https://cdn.videy.co/NwMmqnqf1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/NwMmqnqf1.mp4",
+    "description": "Video yang sedang viral."
+},
+{
+    "id": 20,
     "title": "Kejadian ini bikin heboh 😳",
-    "file": "https://cdn.videy.co/K7bXGZii1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/K7bXGZii1.mp4",
+    "description": "Kejadian yang menarik perhatian."
+},
+{
+    "id": 21,
     "title": "Bikin semua orang kaget 😱",
-    "file": "https://cdn.videy.co/8W5WG7YN1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/8W5WG7YN1.mp4",
+    "description": "Simak videonya."
+},
+{
+    "id": 22,
     "title": "Gak nyangka bakal kayak gini 😨",
-    "file": "https://cdn.videy.co/ChAGdJVY1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/ChAGdJVY1.mp4",
+    "description": "Tonton sampai akhir."
+},
+{
+    "id": 23,
     "title": "Ini yang bikin viral banget 🔥",
-    "file": "https://cdn.videy.co/tkENRJhA1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/tkENRJhA1.mp4",
+    "description": "Video yang sedang ramai."
+},
+{
+    "id": 24,
     "title": "Cuma orang jeli yang sadar 😳",
-    "file": "https://cdn.videy.co/HNC4B1Iw1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/HNC4B1Iw1.mp4",
+    "description": "Coba perhatikan detailnya."
+},
+{
+    "id": 25,
     "title": "Endingnya bikin melongo 😱",
-    "file": "https://cdn.videy.co/HR6hFrEL1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/HR6hFrEL1.mp4",
+    "description": "Jangan lewatkan bagian akhir."
+},
+{
+    "id": 26,
     "title": "Fakta mengejutkan di balik video ini 😨",
-    "file": "https://cdn.videy.co/Q9xPGYrQ1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/Q9xPGYrQ1.mp4",
+    "description": "Simak videonya."
+},
+{
+    "id": 27,
     "title": "Video ini lagi trending 🔥",
-    "file": "https://cdn.videy.co/HQvTWWGl1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/HQvTWWGl1.mp4",
+    "description": "Video yang sedang trending."
+},
+{
+    "id": 28,
     "title": "Bikin penasaran sampai akhir 😳",
-    "file": "https://cdn.videy.co/OjbbA9Uk1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/OjbbA9Uk1.mp4",
+    "description": "Tonton sampai selesai."
+},
+{
+    "id": 29,
     "title": "Kejadian tak biasa 😱",
-    "file": "https://cdn.videy.co/FxX6Vs0R1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/FxX6Vs0R1.mp4",
+    "description": "Kejadian yang tidak biasa."
+},
+{
+    "id": 30,
     "title": "Netizen sampai debat 😨",
-    "file": "https://cdn.videy.co/kqwXpa2F1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/kqwXpa2F1.mp4",
+    "description": "Video yang ramai dibahas."
+},
+{
+    "id": 31,
     "title": "Cuma di sini kamu lihat ini 😳",
-    "file": "https://cdn.videy.co/lazX2M2A1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/lazX2M2A1.mp4",
+    "description": "Video pilihan."
+},
+{
+    "id": 32,
     "title": "Bikin merinding parah 😱",
-    "file": "https://cdn.videy.co/G5tlTxm91.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/G5tlTxm91.mp4",
+    "description": "Simak sampai selesai."
+},
+{
+    "id": 33,
     "title": "Video ini bikin heboh 🔥",
-    "file": "https://cdn2.videy.co/zDmy8rYY1.mp4"
-  },
-  {
+    "url": "https://cdn2.videy.co/zDmy8rYY1.mp4",
+    "description": "Sedang ramai diperbincangkan."
+},
+{
+    "id": 34,
     "title": "Kejadian yang jarang terjadi 😨",
-    "file": "https://cdn2.videy.co/OoiHyshP1.mp4"
-  },
-  {
+    "url": "https://cdn2.videy.co/OoiHyshP1.mp4",
+    "description": "Kejadian yang jarang terjadi."
+},
+{
+    "id": 35,
     "title": "Bikin kaget seketika 😱",
-    "file": "https://cdn.videy.co/kupQ5AfO1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/kupQ5AfO1.mp4",
+    "description": "Tonton sampai akhir."
+},
+{
+    "id": 36,
     "title": "Ini yang bikin viral 😳",
-    "file": "https://cdn.videy.co/DGFaglTA1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/DGFaglTA1.mp4",
+    "description": "Video yang sedang ramai."
+},
+{
+    "id": 37,
     "title": "Gak banyak yang tahu 😨",
-    "file": "https://cdn.videy.co/DZUCbaJa1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/DZUCbaJa1.mp4",
+    "description": "Simak videonya."
+},
+{
+    "id": 38,
     "title": "Lagi trending banget 🔥",
-    "file": "https://cdn.videy.co/Fmm16v9f1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/Fmm16v9f1.mp4",
+    "description": "Video yang sedang trending."
+},
+{
+    "id": 39,
     "title": "Bikin shock 😱",
-    "file": "https://cdn.videy.co/tWaLSxuZ1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/tWaLSxuZ1.mp4",
+    "description": "Tonton sampai selesai."
+},
+{
+    "id": 40,
     "title": "Gak nyangka banget 😳",
-    "file": "https://cdn.videy.co/2ZUz8UmY1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/2ZUz8UmY1.mp4",
+    "description": "Kejadian yang tidak terduga."
+},
+{
+    "id": 41,
     "title": "Video ini bikin penasaran 🔥",
-    "file": "https://cdn.videy.co/P0IKeIuz1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/P0IKeIuz1.mp4",
+    "description": "Jangan lewatkan videonya."
+},
+{
+    "id": 42,
     "title": "Kejadian real tanpa setting 😨",
-    "file": "https://cdn.videy.co/7QkJqpjX1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/7QkJqpjX1.mp4",
+    "description": "Simak videonya sampai akhir."
+},
+{
+    "id": 43,
     "title": "Viral banget hari ini 🔥",
-    "file": "https://cdn.videy.co/bucZLATR1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/bucZLATR1.mp4",
+    "description": "Video viral terbaru."
+},
+{
+    "id": 44,
     "title": "Bikin semua orang kaget 😱",
-    "file": "https://cdn2.videy.co/YLewbw831.mp4"
-  },
-  {
+    "url": "https://cdn2.videy.co/YLewbw831.mp4",
+    "description": "Tonton sampai selesai."
+},
+{
+    "id": 45,
     "title": "Netizen sampai heboh 😳",
-    "file": "https://cdn2.videy.co/HLWpqAOZ1.mp4"
-  },
-  {
+    "url": "https://cdn2.videy.co/HLWpqAOZ1.mp4",
+    "description": "Sedang ramai di media sosial."
+},
+{
+    "id": 46,
     "title": "Kejadian ini bikin merinding 😨",
-    "file": "https://cdn2.videy.co/g0Bh6Bbz1.mp4"
-  },
-  {
+    "url": "https://cdn2.videy.co/g0Bh6Bbz1.mp4",
+    "description": "Kejadian yang menarik perhatian."
+},
+{
+    "id": 47,
     "title": "Gak nyangka endingnya 😱",
-    "file": "https://cdn2.videy.co/nO6zTOcX1.mp4"
-  },
-  {
+    "url": "https://cdn2.videy.co/nO6zTOcX1.mp4",
+    "description": "Jangan lewatkan endingnya."
+},
+{
+    "id": 48,
     "title": "Video ini lagi rame 🔥",
-    "file": "https://cdn.videy.co/q1xn9c9E1.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/q1xn9c9E1.mp4",
+    "description": "Video yang sedang ramai."
+},
+{
+    "id": 49,
     "title": "Bikin penasaran netizen 😳",
-    "file": "https://cdn.videy.co/GgNEaD211.mp4"
-  },
-  {
+    "url": "https://cdn.videy.co/GgNEaD211.mp4",
+    "description": "Tonton sampai akhir."
+},
+{
+    "id": 50,
     "title": "Kejadian ini jarang banget 😨",
-    "file": "https://cdn.videy.co/3m1PieA31.mp4"
-  },
-  {
-    "title": "Bikin heboh sosial media 😱",
-    "file": "https://cdn.videy.co/nJCvaRmL1.mp4"
-  },
-  {
-    "title": "Ini alasan video ini viral 🔥",
-    "file": "https://cdn.videy.co/lIWiiz8i1.mp4"
-  },
-  {
-    "title": "Video Terbaru #53",
-    "file": "https://cdn2.videy.co/07NDkyml1.mp4"
-  },
-  {
-    "title": "Video Terbaru #54",
-    "file": "https://cdn2.videy.co/Y5LOOOWu1.mp4"
-  },
-  {
-    "title": "Video Terbaru #55",
-    "file": "https://cdn2.videy.co/e8iqLicw1.mp4"
-  },
-  {
-    "title": "Video Terbaru #56",
-    "file": "https://cdn2.videy.co/B8X4JDBe1.mp4"
-  },
-  {
-    "title": "Video Terbaru #57",
-    "file": "https://cdn2.videy.co/2QjJLeH41.mp4"
-  },
-  {
-    "title": "Video Terbaru #58",
-    "file": "https://cdn2.videy.co/IKfKPuwH1.mp4"
-  },
-  {
-    "title": "Video Terbaru #59",
-    "file": "https://cdn2.videy.co/T8MXfZfG1.mp4"
-  },
-  {
-    "title": "Video Terbaru #60",
-    "file": "https://cdn2.videy.co/98IJEuFV1.mp4"
-  },
-  {
-    "title": "Video Terbaru #61",
-    "file": "https://cdn2.videy.co/4FHBu3yT1.mp4"
-  },
-  {
-    "title": "Video Terbaru #62",
-    "file": "https://cdn2.videy.co/kac6Usm41.mp4"
-  },
-  {
-    "title": "Video Terbaru #63",
-    "file": "https://cdn2.videy.co/WlePRMpw1.mp4"
-  },
-  {
-    "title": "Video Terbaru #64",
-    "file": "https://cdn2.videy.co/FrMPx8vh1.mp4"
-  },
-  {
-    "title": "Video Terbaru #65",
-    "file": "https://cdn2.videy.co/7NOYFtVO1.mp4"
-  },
-  {
-    "title": "Video Terbaru #66",
-    "file": "https://cdn2.videy.co/XZDcgsKk1.mp4"
-  },
-  {
-    "title": "Video Terbaru #67",
-    "file": "https://cdn2.videy.co/xvQIRuyh1.mp4"
-  },
-  {
-    "title": "Video Terbaru #68",
-    "file": "https://cdn2.videy.co/p0m1wIBt1.mp4"
-  },
-  {
-    "title": "Video Terbaru #69",
-    "file": "https://cdn2.videy.co/CBM8VF1R1.mp4"
-  },
-  {
-    "title": "Video Terbaru #70",
-    "file": "https://cdn2.videy.co/vgPQJwhX1.mp4"
-  },
-  {
-    "title": "Video Terbaru #71",
-    "file": "https://cdn2.videy.co/WAAcziqU1.mp4"
-  },
-  {
-    "title": "Video Terbaru #72",
-    "file": "https://cdn2.videy.co/ZGgyGSkG1.mp4"
-  },
-  {
-    "title": "Video Terbaru #73",
-    "file": "https://cdn2.videy.co/3yTsy4pd1.mp4"
-  },
-  {
-    "title": "Video Terbaru #74",
-    "file": "https://cdn2.videy.co/TH1Qb0NG1.mp4"
-  },
-  {
-    "title": "Video Terbaru #75",
-    "file": "https://cdn2.videy.co/EN9hFPFN1.mp4"
-  },
-  {
-    "title": "Video Terbaru #76",
-    "file": "https://cdn2.videy.co/xglFt9Mw1.mp4"
-  },
-  {
-    "title": "Video Terbaru #77",
-    "file": "https://cdn2.videy.co/cb5yafHh1.mp4"
-  },
-  {
-    "title": "Video Terbaru #78",
-    "file": "https://cdn2.videy.co/xEpmZfyP1.mp4"
-  },
-  {
-    "title": "Video Terbaru #79",
-    "file": "https://cdn2.videy.co/fQLDfShi1.mp4"
-  },
-  {
-    "title": "Video Terbaru #80",
-    "file": "https://cdn2.videy.co/sjiY7vjn1.mp4"
-  },
-  {
-    "title": "Video Terbaru #81",
-    "file": "https://cdn2.videy.co/SSWur6zS1.mp4"
-  },
-  {
-    "title": "Video Terbaru #82",
-    "file": "https://cdn2.videy.co/YsqrZfi61.mp4"
-  },
-  {
-    "title": "Video Terbaru #83",
-    "file": "https://cdn2.videy.co/lYVxH0Vv1.mp4"
-  },
-  {
-    "title": "Video Terbaru #84",
-    "file": "https://cdn2.videy.co/ruPQjrqf1.mp4"
-  },
-  {
-    "title": "Video Terbaru #85",
-    "file": "https://cdn2.videy.co/v0xFkhm61.mp4"
-  },
-  {
-    "title": "Video Terbaru #86",
-    "file": "https://cdn2.videy.co/ZnkHYani1.mp4"
-  },
-  {
-    "title": "Video Terbaru #87",
-    "file": "https://cdn2.videy.co/fqwhRbh21.mp4"
-  },
-  {
-    "title": "Video Terbaru #88",
-    "file": "https://cdn2.videy.co/08PQ8wKv1.mp4"
-  },
-  {
-    "title": "Video Terbaru #89",
-    "file": "https://cdn2.videy.co/lIBnhQ7I1.mp4"
-  },
-  {
-    "title": "Video Terbaru #90",
-    "file": "https://cdn2.videy.co/dpcEevNf1.mp4"
-  },
-  {
-    "title": "Video Terbaru #91",
-    "file": "https://cdn2.videy.co/WtiEdTcU1.mp4"
-  },
-  {
-    "title": "Video Terbaru #92",
-    "file": "https://cdn2.videy.co/4IsNCljc1.mp4"
-  },
-  {
-    "title": "Video Terbaru #93",
-    "file": "https://cdn2.videy.co/grleEx4L1.mp4"
-  },
-  {
-    "title": "Video Terbaru #94",
-    "file": "https://cdn2.videy.co/v7zxUfA61.mp4"
-  },
-  {
-    "title": "Video Terbaru #95",
-    "file": "https://cdn2.videy.co/q6XdHOhb1.mp4"
-  },
-  {
-    "title": "Video Terbaru #96",
-    "file": "https://cdn2.videy.co/FxIadtzm1.mp4"
-  },
-  {
-    "title": "Video Terbaru #97",
-    "file": "https://cdn2.videy.co/RkNJafxI1.mp4"
-  },
-  {
-    "title": "Video Terbaru #98",
-    "file": "https://cdn2.videy.co/vuH0IlsL1.mp4"
-  },
-  {
-    "title": "Video Terbaru #99",
-    "file": "https://cdn2.videy.co/fU26g6Uh1.mp4"
-  },
-  {
-    "title": "Video Terbaru #100",
-    "file": "https://cdn2.slicedrive.com/JJ8alJMU1.mp4"
-  },
-  {
-    "title": "Video Terbaru #101",
-    "file": "https://cdn2.slicedrive.com/eF8a0hc41.mp4"
-  },
-  {
-    "title": "Video Terbaru #102",
-    "file": "https://cdn2.slicedrive.com/zHki09BD1.mp4"
-  },
-  {
-    "title": "Video Terbaru #103",
-    "file": "https://cdn2.slicedrive.com/V8Vb79IH1.mp4"
-  },
-  {
-    "title": "Video Terbaru #104",
-    "file": "https://cdn2.slicedrive.com/JwEywSi71.mp4"
-  },
-  {
-    "title": "Video Terbaru #105",
-    "file": "https://cdn2.slicedrive.com/39lwprTg1.mp4"
-  },
-  {
-    "title": "Video Terbaru #106",
-    "file": "https://cdn2.slicedrive.com/L3TVRr5q1.mp4"
-  },
-  {
-    "title": "Video Terbaru #107",
-    "file": "https://cdn2.slicedrive.com/4gN8D64O1.mp4"
-  },
-  {
-    "title": "Video Terbaru #108",
-    "file": "https://cdn2.slicedrive.com/b8lqz1kw1.mp4"
-  },
-  {
-    "title": "Video Terbaru #109",
-    "file": "https://cdn2.slicedrive.com/TnfZFpw61.mp4"
-  },
-  {
-    "title": "Video Terbaru #110",
-    "file": "https://cdn2.slicedrive.com/EelwE3Wa1.mp4"
-  },
-  {
-    "title": "Video Terbaru #111",
-    "file": "https://cdn2.slicedrive.com/HX2OWphT1.mp4"
-  },
-  {
-    "title": "Video Terbaru #112",
-    "file": "https://cdn2.slicedrive.com/s2NET4xv1.mp4"
-  },
-  {
-    "title": "Video Terbaru #113",
-    "file": "https://cdn2.slicedrive.com/SFcx8Lwd1.mp4"
-  },
-  {
-    "title": "Video Terbaru #114",
-    "file": "https://cdn2.slicedrive.com/U5rufUz21.mp4"
-  },
-  {
-    "title": "Video Terbaru #115",
-    "file": "https://cdn2.slicedrive.com/l83KeT7c1.mp4"
-  },
-  {
-    "title": "Video Terbaru #116",
-    "file": "https://cdn2.slicedrive.com/we2WIEqz1.mp4"
-  },
-  {
-    "title": "Video Terbaru #117",
-    "file": "https://cdn2.slicedrive.com/e93fKGPV1.mp4"
-  },
-  {
-    "title": "Video Terbaru #118",
-    "file": "https://cdn2.slicedrive.com/fhE1MpwW1.mp4"
-  },
-  {
-    "title": "Video Terbaru #119",
-    "file": "https://cdn2.slicedrive.com/E5XPo2bB1.mp4"
-  },
-  {
-    "title": "Video Terbaru #120",
-    "file": "https://cdn2.slicedrive.com/WpC9VEPj1.mp4"
-  },
-  {
-    "title": "Video Terbaru #121",
-    "file": "https://cdn2.slicedrive.com/Fk9pHKuL1.mp4"
-  },
-  {
-    "title": "Video Terbaru #122",
-    "file": "https://cdn2.slicedrive.com/SrPb9nzl1.mp4"
-  },
-  {
-    "title": "Video Terbaru #123",
-    "file": "https://cdn2.slicedrive.com/T9MkqIWz1.mp4"
-  },
-  {
-    "title": "Video Terbaru #124",
-    "file": "https://cdn2.slicedrive.com/2Vl6S94Y1.mp4"
-  },
-  {
-    "title": "Video Terbaru #125",
-    "file": "https://cdn2.slicedrive.com/PJcL2CB81.mp4"
-  },
-  {
-    "title": "Video Terbaru #126",
-    "file": "https://cdn2.slicedrive.com/1h7Zx7Zn1.mp4"
-  },
-  {
-    "title": "Video Terbaru #127",
-    "file": "https://cdn2.slicedrive.com/biR013bX1.mp4"
-  },
-  {
-    "title": "Video Terbaru #128",
-    "file": "https://cdn2.slicedrive.com/snAlCHB01.mp4"
-  },
-  {
-    "title": "Video Terbaru #129",
-    "file": "https://cdn2.slicedrive.com/pzVKhEzF1.mp4"
-  },
-  {
-    "title": "Video Terbaru #130",
-    "file": "https://cdn2.slicedrive.com/xywSyNYD1.mp4"
-  },
-  {
-    "title": "Video Terbaru #131",
-    "file": "https://cdn2.slicedrive.com/4AU0AwJ21.mp4"
-  },
-  {
-    "title": "Video Terbaru #132",
-    "file": "https://cdn2.slicedrive.com/GSakoqwe1.mp4"
-  },
-  {
-    "title": "Video Terbaru #133",
-    "file": "https://cdn2.slicedrive.com/WMgTXZTM1.mp4"
-  },
-  {
-    "title": "Video Terbaru #134",
-    "file": "https://cdn2.slicedrive.com/GZ9VV5Zh1.mp4"
-  },
-  {
-    "title": "Video Terbaru #135",
-    "file": "https://cdn2.slicedrive.com/YD5jLqe71.mp4"
-  },
-  {
-    "title": "Video Terbaru #136",
-    "file": "https://cdn2.slicedrive.com/dmxHVBg71.mp4"
-  },
-  {
-    "title": "Video Terbaru #137",
-    "file": "https://cdn2.slicedrive.com/lsNB4XuK1.mp4"
-  },
-  {
-    "title": "Video Terbaru #138",
-    "file": "https://cdn2.slicedrive.com/EwKkC2GT1.mp4"
-  },
-  {
-    "title": "Video Terbaru #139",
-    "file": "https://cdn2.slicedrive.com/xjYBZiuP1.mp4"
-  },
-  {
-    "title": "Video Terbaru #140",
-    "file": "https://cdn2.slicedrive.com/4rUACzh01.mp4"
-  },
-  {
-    "title": "Video Terbaru #141",
-    "file": "https://cdn2.slicedrive.com/vigf2IJe1.mp4"
-  },
-  {
-    "title": "Video Terbaru #142",
-    "file": "https://media.slicedrive.com/tw9mTtOi1.mp4"
-  },
-  {
-    "title": "Video Terbaru #143",
-    "file": "https://cdn2.slicedrive.com/E2bYSJo31.mp4"
-  },
-  {
-    "title": "Video Terbaru #144",
-    "file": "https://cdn2.slicedrive.com/lpjekzEc1.mp4"
-  },
-  {
-    "title": "Video Terbaru #145",
-    "file": "https://cdn2.slicedrive.com/SoOuCQw71.mp4"
-  },
-  {
-    "title": "Video Terbaru #146",
-    "file": "https://cdn2.slicedrive.com/1IkowYLh1.mp4"
-  },
-  {
-    "title": "Video Terbaru #147",
-    "file": "https://cdn2.slicedrive.com/TYEJhDwP1.mp4"
-  },
-  {
-    "title": "Video Terbaru #148",
-    "file": "https://cdn2.slicedrive.com/CCOtPMHm1.mp4"
-  },
-  {
-    "title": "Video Terbaru #149",
-    "file": "https://cdn2.slicedrive.com/KvygHJam1.mp4"
-  },
-  {
-    "title": "Video Terbaru #150",
-    "file": "https://cdn2.slicedrive.com/CwbQLXfi1.mp4"
-  },
-  {
-    "title": "Video Terbaru #151",
-    "file": "https://cdn2.slicedrive.com/OwPRug1A1.mp4"
-  },
-  {
-    "title": "Video Terbaru #152",
-    "file": "https://cdn2.slicedrive.com/EeMIDZwT1.mp4"
-  },
-  {
-    "title": "Video Terbaru #153",
-    "file": "https://cdn2.slicedrive.com/jKcFrzMY1.mp4"
-  },
-  {
-    "title": "Video Terbaru #154",
-    "file": "https://cdn2.slicedrive.com/7LT4DEQG1.mp4"
-  },
-  {
-    "title": "Video Terbaru #155",
-    "file": "https://cdn2.slicedrive.com/vE8I7Az31.mp4"
-  },
-  {
-    "title": "Video Terbaru #156",
-    "file": "https://cdn2.slicedrive.com/PQ693Th21.mp4"
-  },
-  {
-    "title": "Video Terbaru #157",
-    "file": "https://cdn2.slicedrive.com/QdwokKIh1.mp4"
-  },
-  {
-    "title": "Video Terbaru #158",
-    "file": "https://cdn2.slicedrive.com/H2gOuHYP1.mp4"
-  },
-  {
-    "title": "Video Terbaru #159",
-    "file": "https://cdn2.slicedrive.com/6Bw0JDSH1.mp4"
-  },
-  {
-    "title": "Video Terbaru #160",
-    "file": "https://cdn2.slicedrive.com/FtkPLkYG1.mp4"
-  },
-  {
-    "title": "Video Terbaru #161",
-    "file": "https://cdn2.slicedrive.com/HJNF895M1.mp4"
-  },
-  {
-    "title": "Video Terbaru #162",
-    "file": "https://cdn2.slicedrive.com/koEC9Qjt1.mp4"
-  },
-  {
-    "title": "Video Terbaru #163",
-    "file": "https://cdn2.aceimg.com/P3Nfafhls.mp4"
-  },
-  {
-    "title": "Video Terbaru #164",
-    "file": "https://cdn2.aceimg.com/xKfEzQm2Z.mp4"
-  },
-  {
-    "title": "Video Terbaru #165",
-    "file": "https://cdn2.aceimg.com/EQUzzmrde.mp4"
-  },
-  {
-    "title": "Video Terbaru #166",
-    "file": "https://cdn2.slicedrive.com/aTqPgbHH1.mp4"
-  },
-  {
-    "title": "Video Terbaru #167",
-    "file": "https://cdn2.videy.co/vkWDbqQx1.mp4"
-  },
-  {
-    "title": "Video Terbaru #168",
-    "file": "https://cdn2.videy.co/fDn3Avz81.mp4"
-  },
-  {
-    "title": "Video Terbaru #169",
-    "file": "https://cdn2.slicedrive.com/MHa09lDv1.mp4"
-  },
-  {
-    "title": "Video Terbaru #170",
-    "file": "https://cdn2.videy.co/fcEtGKYJ1.mp4"
-  },
-  {
-    "title": "Video Terbaru #171",
-    "file": "https://cdn2.slicedrive.com/maJPWRrp1.mp4"
-  },
-  {
-    "title": "Video Terbaru #172",
-    "file": "https://cdn2.slicedrive.com/uqxfpZNv1.mp4"
-  },
-  {
-    "title": "Video Terbaru #173",
-    "file": "https://cdn2.slicedrive.com/6JOn1BAS1.mp4"
-  },
-  {
-    "title": "Video Terbaru #174",
-    "file": "https://cdn2.videy.co/6hRHGzDn1.mp4"
-  },
-  {
-    "title": "Video Terbaru #175",
-    "file": "https://cdn2.videy.co/Ye5wLigj1.mp4"
-  },
-  {
-    "title": "Video Terbaru #176",
-    "file": "https://cdn2.videy.co/QQG7Jpk01.mp4"
-  },
-  {
-    "title": "Video Terbaru #177",
-    "file": "https://cdn2.aceimg.com/da0a86834.mp4"
-  },
-  {
-    "title": "Video Terbaru #178",
-    "file": "https://cdn2.aceimg.com/141caaf56.mp4"
-  },
-  {
-    "title": "Video Terbaru #179",
-    "file": "https://cdn2.aceimg.com/88fba88d4.mp4"
-  },
-  {
-    "title": "Video Terbaru #180",
-    "file": "https://cdn2.slicedrive.com/vh2kF1YV1.mp4"
-  },
-  {
-    "title": "Video Terbaru #181",
-    "file": "https://cdn2.videy.co/X2c8HWme1.mp4"
-  },
-  {
-    "title": "Video Terbaru #182",
-    "file": "https://cdn2.videy.co/X2kJI7l61.mp4"
-  },
-  {
-    "title": "Video Terbaru #183",
-    "file": "https://cdn2.slicedrive.com/oChHsvBT1.mp4"
-  },
-  {
-    "title": "Video Terbaru #184",
-    "file": "https://cdn2.slicedrive.com/lPGdLDGl1.mp4"
-  },
-  {
-    "title": "Video Terbaru #185",
-    "file": "https://cdn2.slicedrive.com/ssyeVcC81.mp4"
-  },
-  {
-    "title": "Video Terbaru #186",
-    "file": "https://cdn2.slicedrive.com/OeGxZAdJ1.mp4"
-  },
-  {
-    "title": "Video Terbaru #187",
-    "file": "https://cdn2.videy.co/MdFNROIe1.mp4"
-  },
-  {
-    "title": "Video Terbaru #188",
-    "file": "https://cdn2.videy.co/jUPT4pnx1.mp4"
-  },
-  {
-    "title": "Video Terbaru #189",
-    "file": "https://cdn2.videy.co/pUImkFOf1.mp4"
-  },
-  {
-    "title": "Video Terbaru #190",
-    "file": "https://cdn2.videy.co/BAXkZer71.mp4"
-  },
-  {
-    "title": "Video Terbaru #191",
-    "file": "https://cdn2.videy.co/QFkm044C1.mp4"
-  },
-  {
-    "title": "Video Terbaru #192",
-    "file": "https://cdn2.slicedrive.com/q6Sij5yR1.mp4"
-  },
-  {
-    "title": "Video Terbaru #193",
-    "file": "https://cdn2.slicedrive.com/e7bb5C5U1.mp4"
-  },
-  {
-    "title": "Video Terbaru #194",
-    "file": "https://cdn2.slicedrive.com/fOev18Dw1.mp4"
-  },
-  {
-    "title": "Video Terbaru #195",
-    "file": "https://cdn2.slicedrive.com/ZwM3spm91.mp4"
-  },
-  {
-    "title": "Video Terbaru #196",
-    "file": "https://cdn2.slicedrive.com/dzysnykK1.mp4"
-  },
-  {
-    "title": "Video Terbaru #197",
-    "file": "https://cdn2.slicedrive.com/m7H5oQta1.mp4"
-  },
-  {
-    "title": "Video Terbaru #198",
-    "file": "https://cdn2.videy.co/kmLdZeYa1.mp4"
-  },
-  {
-    "title": "Video Terbaru #199",
-    "file": "https://cdn2.slicedrive.com/QieK52vV1.mp4"
-  },
-  {
-    "title": "Video Terbaru #200",
-    "file": "https://cdn2.slicedrive.com/kSVcKqtz1.mp4"
-  },
-  {
-    "title": "Video Terbaru #201",
-    "file": "https://cdn2.slicedrive.com/F8zfMiYp1.mp4"
-  },
-  {
-    "title": "Video Terbaru #202",
-    "file": "https://cdn2.slicedrive.com/4nzhpgBj1.mp4"
-  },
-  {
-    "title": "Video Terbaru #203",
-    "file": "https://cdn2.slicedrive.com/V02R6EhM1.mp4"
-  },
-  {
-    "title": "Video Terbaru #204",
-    "file": "https://cdn2.slicedrive.com/ZpP2GAkA1.mp4"
-  },
-  {
-    "title": "Video Terbaru #205",
-    "file": "https://cdn2.videy.co/7ZLmmg7s1.mp4"
-  },
-  {
-    "title": "Video Terbaru #206",
-    "file": "https://cdn2.videy.co/tt95U3V61.mp4"
-  },
-  {
-    "title": "Video Terbaru #207",
-    "file": "https://cdn2.videy.co/z86DoR8G1.mp4"
-  },
-  {
-    "title": "Video Terbaru #208",
-    "file": "https://cdn2.videy.co/64gCQT7r1.mp4"
-  },
-  {
-    "title": "Video Terbaru #209",
-    "file": "https://cdn2.videy.co/OMOLpvdF1.mp4"
-  },
-  {
-    "title": "Video Terbaru #210",
-    "file": "https://cdn2.videy.co/icUDPhyq1.mp4"
-  },
-  {
-    "title": "Video Terbaru #211",
-    "file": "https://cdn2.aceimg.com/xXYim2GZX.mp4"
-  },
-  {
-    "title": "Video Terbaru #212",
-    "file": "https://cdn2.aceimg.com/yuS9KDoU5.mp4"
-  },
-  {
-    "title": "Video Terbaru #213",
-    "file": "https://cdn2.videy.co/Io0ffecP1.mp4"
-  },
-  {
-    "title": "Video Terbaru #214",
-    "file": "https://cdn2.videy.co/9XZQthtf1.mp4"
-  },
-  {
-    "title": "Video Terbaru #215",
-    "file": "https://cdn2.videy.co/h0kWvWyx1.mp4"
-  },
-  {
-    "title": "Video Terbaru #216",
-    "file": "https://cdn2.videy.co/wMEmk1PZ1.mp4"
-  },
-  {
-    "title": "Video Terbaru #217",
-    "file": "https://cdn2.videy.co/hSPXwfMv1.mp4"
-  },
-  {
-    "title": "Video Terbaru #218",
-    "file": "https://cdn2.videy.co/uE4dHtoo1.mp4"
-  },
-  {
-    "title": "Video Terbaru #219",
-    "file": "https://cdn2.aceimg.com/c2b9ed69b.mp4"
-  },
-  {
-    "title": "Video Terbaru #220",
-    "file": "https://cdn2.aceimg.com/acf58ac94.mp4"
-  },
-  {
-    "title": "Video Terbaru #221",
-    "file": "https://cdn2.videy.co/a5d5eZB41.mp4"
-  },
-  {
-    "title": "Video Terbaru #222",
-    "file": "https://cdn2.videy.co/1j8NTKus1.mp4"
-  },
-  {
-    "title": "Video Terbaru #223",
-    "file": "https://cdn.slicedrive.com/jNFOA6bq1.mp4"
-  },
-  {
-    "title": "Video Terbaru #224",
-    "file": "https://cdn.slicedrive.com/yj351oEP1.mp4"
-  },
-  {
-    "title": "Video Terbaru #225",
-    "file": "https://cdn.slicedrive.com/nUaJK6cX1.mp4"
-  },
-  {
-    "title": "Video Terbaru #226",
-    "file": "https://cdn.slicedrive.com/z7gRZBDG1.mp4"
-  },
-  {
-    "title": "Video Terbaru #227",
-    "file": "https://cdn.slicedrive.com/KSNqN25r1.mp4"
-  },
-  {
-    "title": "Video Terbaru #228",
-    "file": "https://cdn.slicedrive.com/cT8KE4bo1.mp4"
-  },
-  {
-    "title": "Video Terbaru #229",
-    "file": "https://cdn.slicedrive.com/Cyqi1AZi1.mp4"
-  },
-  {
-    "title": "Video Terbaru #230",
-    "file": "https://cdn.slicedrive.com/eqEsHn8P1.mp4"
-  },
-  {
-    "title": "Video Terbaru #231",
-    "file": "https://cdn.slicedrive.com/6iV5sCm61.mp4"
-  },
-  {
-    "title": "Video Terbaru #232",
-    "file": "https://cdn.slicedrive.com/TcYDtVhY1.mp4"
-  },
-  {
-    "title": "Video Terbaru #233",
-    "file": "https://cdn.slicedrive.com/KDyRKP5I1.mp4"
-  },
-  {
-    "title": "Video Terbaru #234",
-    "file": "https://cdn.slicedrive.com/9JUxLiKS1.mp4"
-  },
-  {
-    "title": "Video Terbaru #235",
-    "file": "https://cdn.slicedrive.com/FwYWoDkf1.mp4"
-  },
-  {
-    "title": "Video Terbaru #236",
-    "file": "https://cdn.slicedrive.com/6kheFIsK1.mp4"
-  },
-  {
-    "title": "Video Terbaru #237",
-    "file": "https://cdn.slicedrive.com/Mp3EMMDg1.mp4"
-  },
-  {
-    "title": "Video Terbaru #238",
-    "file": "https://cdn.slicedrive.com/KhWswIWy1.mp4"
-  },
-  {
-    "title": "Video Terbaru #239",
-    "file": "https://cdn.slicedrive.com/gWvSxozx1.mp4"
-  },
-  {
-    "title": "Video Terbaru #240",
-    "file": "https://cdn.slicedrive.com/wshuRtc81.mp4"
-  },
-  {
-    "title": "Video Terbaru #241",
-    "file": "https://cdn.slicedrive.com/gWfNdxWh1.mp4"
-  },
-  {
-    "title": "Video Terbaru #242",
-    "file": "https://cdn.slicedrive.com/eKiKhHlz1.mp4"
-  },
-  {
-    "title": "Video Terbaru #243",
-    "file": "https://cdn.slicedrive.com/7bpGob1p1.mp4"
-  },
-  {
-    "title": "Video Terbaru #244",
-    "file": "https://cdn.slicedrive.com/9CSyPIM31.mp4"
-  },
-  {
-    "title": "Video Terbaru #245",
-    "file": "https://cdn.slicedrive.com/5nI5xlkD1.mp4"
-  },
-  {
-    "title": "Video Terbaru #246",
-    "file": "https://cdn.slicedrive.com/5HjLdoxz1.mp4"
-  },
-  {
-    "title": "Video Terbaru #247",
-    "file": "https://cdn.slicedrive.com/3nqtCuCX1.mp4"
-  },
-  {
-    "title": "Video Terbaru #248",
-    "file": "https://cdn.slicedrive.com/dFNY9U6z1.mp4"
-  },
-  {
-    "title": "Video Terbaru #249",
-    "file": "https://cdn.slicedrive.com/EXQZX3RP1.mp4"
-  },
-  {
-    "title": "Video Terbaru #250",
-    "file": "https://cdn.slicedrive.com/3Df17Mct1.mp4"
-  },
-  {
-    "title": "Video Terbaru #251",
-    "file": "https://cdn.slicedrive.com/jLvnN3rU1.mp4"
-  },
-  {
-    "title": "Video Terbaru #252",
-    "file": "https://cdn.slicedrive.com/scP3UF821.mp4"
-  },
-  {
-    "title": "Video Terbaru #253",
-    "file": "https://cdn.slicedrive.com/gadfDBXe1.mp4"
-  },
-  {
-    "title": "Video Terbaru #254",
-    "file": "https://cdn.slicedrive.com/1qaBml6c1.mp4"
-  },
-  {
-    "title": "Video Terbaru #255",
-    "file": "https://cdn.slicedrive.com/wk6128LG1.mp4"
-  },
-  {
-    "title": "Video Terbaru #256",
-    "file": "https://cdn.slicedrive.com/xxea0RFj1.mp4"
-  },
-  {
-    "title": "Video Terbaru #257",
-    "file": "https://cdn.slicedrive.com/GDbL9hs21.mp4"
-  },
-  {
-    "title": "Video Terbaru #258",
-    "file": "https://cdn.slicedrive.com/2HdXQAhn1.mp4"
-  },
-  {
-    "title": "Video Terbaru #259",
-    "file": "https://cdn.slicedrive.com/h6z2COPZ1.mp4"
-  },
-  {
-    "title": "Video Terbaru #260",
-    "file": "https://cdn.slicedrive.com/EV2WV4ix1.mp4"
-  },
-  {
-    "title": "Video Terbaru #261",
-    "file": "https://cdn.slicedrive.com/ipWnRmhU1.mp4"
-  },
-  {
-    "title": "Video Terbaru #262",
-    "file": "https://cdn.slicedrive.com/NuOu7zJ71.mp4"
-  },
-  {
-    "title": "Video Terbaru #263",
-    "file": "https://cdn.slicedrive.com/ibWGggAX1.mp4"
-  },
-  {
-    "title": "Video Terbaru #264",
-    "file": "https://cdn.slicedrive.com/aMIIZpMY1.mp4"
-  },
-  {
-    "title": "Video Terbaru #265",
-    "file": "https://cdn.videy.co/8S6d0DW61.mp4"
-  },
-  {
-    "title": "Video Terbaru #266",
-    "file": "https://cdn.videy.co/fr2EUIbo1.mp4"
-  },
-  {
-    "title": "Video Terbaru #267",
-    "file": "https://cdn.videy.co/VAUgW0vO1.mp4"
-  },
-  {
-    "title": "Video Terbaru #268",
-    "file": "https://cdn.videy.co/anmIJcGy1.mp4"
-  },
-  {
-    "title": "Video Terbaru #269",
-    "file": "https://cdn.videy.co/BN3YyVfS1.mp4"
-  },
-  {
-    "title": "Video Terbaru #270",
-    "file": "https://cdn.videy.co/xmeTv2EI1.mp4"
-  }
-    ]
+    "url": "https://cdn.videy.co/3m1PieA31.mp4",
+    "description": "Kejadian yang jarang terjadi."
+},
+{
+"title": "Momen tak terduga yang bikin penasaran 😳",
+"file": "https://cdn.videy.co/lIWiiz8i1.mp4"
+},
+{
+"title": "Kejadian singkat tapi bikin heboh 😱",
+"file": "https://cdn2.videy.co/07NDkyml1.mp4"
+},
+{
+"title": "Ternyata begini yang terjadi di balik layar 😨",
+"file": "https://cdn2.videy.co/Y5LOOOWu1.mp4"
+},
+{
+"title": "Detik terakhirnya benar-benar mengejutkan 😳",
+"file": "https://cdn2.videy.co/e8iqLicw1.mp4"
+},
+{
+"title": "Awalnya biasa saja, tapi akhirnya berbeda 😱",
+"file": "https://cdn2.videy.co/B8X4JDBe1.mp4"
+},
+{
+"title": "Perhatikan baik-baik sebelum lanjut 😨",
+"file": "https://cdn2.videy.co/2QjJLeH41.mp4"
+},
+{
+"title": "Momen aneh yang bikin banyak orang bertanya 😳",
+"file": "https://cdn2.videy.co/IKfKPuwH1.mp4"
+},
+{
+"title": "Tidak ada yang menyangka bakal seperti ini 😱",
+"file": "https://cdn2.videy.co/T8MXfZfG1.mp4"
+},
+{
+"title": "Reaksi orang-orang di video ini bikin penasaran 😨",
+"file": "https://cdn2.videy.co/98IJEuFV1.mp4"
+},
+{
+"title": "Satu momen yang langsung menarik perhatian 😳",
+"file": "https://cdn2.videy.co/4FHBu3yT1.mp4"
+},
+{
+"title": "Kejadian mendadak yang terekam dengan jelas 😱",
+"file": "https://cdn2.videy.co/kac6Usm41.mp4"
+},
+{
+"title": "Apa yang sebenarnya terjadi di sini? 🤔",
+"file": "https://cdn2.videy.co/WlePRMpw1.mp4"
+},
+{
+"title": "Momen ini bikin suasana langsung berubah 😨",
+"file": "https://cdn2.videy.co/FrMPx8vh1.mp4"
+},
+{
+"title": "Coba lihat sampai bagian akhirnya 😳",
+"file": "https://cdn2.videy.co/7NOYFtVO1.mp4"
+},
+{
+"title": "Seketika semua mata tertuju ke sana 😱",
+"file": "https://cdn2.videy.co/XZDcgsKk1.mp4"
+},
+{
+"title": "Momen yang sulit dipercaya kalau belum melihatnya 😨",
+"file": "https://cdn2.videy.co/xvQIRuyh1.mp4"
+},
+{
+"title": "Tidak seperti yang terlihat pada awalnya 😳",
+"file": "https://cdn2.videy.co/p0m1wIBt1.mp4"
+},
+{
+"title": "Kejadian tak biasa di tengah suasana ramai 😱",
+"file": "https://cdn2.videy.co/CBM8VF1R1.mp4"
+},
+{
+"title": "Bagian akhirnya membuat banyak orang terdiam 😨",
+"file": "https://cdn2.videy.co/vgPQJwhX1.mp4"
+},
+{
+"title": "Momen singkat yang langsung jadi perhatian 😳",
+"file": "https://cdn2.videy.co/WAAcziqU1.mp4"
+},
+{
+"title": "Ternyata ada kejadian lain yang tidak terlihat 😱",
+"file": "https://cdn2.videy.co/ZGgyGSkG1.mp4"
+},
+{
+"title": "Lihat perubahan yang terjadi beberapa detik kemudian 😨",
+"file": "https://cdn2.videy.co/3yTsy4pd1.mp4"
+},
+{
+"title": "Momen ini bikin penasaran dari awal sampai akhir 😳",
+"file": "https://cdn2.videy.co/TH1Qb0NG1.mp4"
+},
+{
+"title": "Satu kejadian yang langsung mengundang perhatian 😱",
+"file": "https://cdn2.videy.co/EN9hFPFN1.mp4"
+},
+{
+"title": "Tidak disangka ada kejutan di bagian akhir 😨",
+"file": "https://cdn2.videy.co/xglFt9Mw1.mp4"
+},
+{
+"title": "Momen spontan yang berhasil terekam kamera 😳",
+"file": "https://cdn2.videy.co/cb5yafHh1.mp4"
+},
+{
+"title": "Awalnya terlihat normal, lalu terjadi sesuatu 😱",
+"file": "https://cdn2.videy.co/xEpmZfyP1.mp4"
+},
+{
+"title": "Banyak yang penasaran dengan kejadian ini 😨",
+"file": "https://cdn2.videy.co/fQLDfShi1.mp4"
+},
+{
+"title": "Jangan lewatkan momen yang satu ini 😳",
+"file": "https://cdn2.videy.co/sjiY7vjn1.mp4"
+},
+{
+"title": "Kejadian kecil yang berubah jadi mengejutkan 😱",
+"file": "https://cdn2.videy.co/SSWur6zS1.mp4"
+},
+{
+"title": "Momen tak terduga muncul begitu saja 😨",
+"file": "https://cdn2.videy.co/YsqrZfi61.mp4"
+},
+{
+"title": "Peristiwa ini membuat orang langsung bereaksi 😳",
+"file": "https://cdn2.videy.co/lYVxH0Vv1.mp4"
+},
+{
+"title": "Ada sesuatu yang menarik perhatian di sini 😱",
+"file": "https://cdn2.videy.co/ruPQjrqf1.mp4"
+},
+{
+"title": "Bagian terakhirnya tidak seperti dugaan 😨",
+"file": "https://cdn2.videy.co/v0xFkhm61.mp4"
+},
+{
+"title": "Momen ini bikin orang langsung melihat ulang 😳",
+"file": "https://cdn2.videy.co/ZnkHYani1.mp4"
+},
+{
+"title": "Kejadian mendadak yang bikin suasana berubah 😱",
+"file": "https://cdn2.videy.co/fqwhRbh21.mp4"
+},
+{
+"title": "Apa kamu bisa menebak apa yang terjadi? 🤔",
+"file": "https://cdn2.videy.co/08PQ8wKv1.mp4"
+},
+{
+"title": "Momen langka yang jarang tertangkap kamera 😨",
+"file": "https://cdn2.videy.co/lIBnhQ7I1.mp4"
+},
+{
+"title": "Semuanya berubah hanya dalam beberapa detik 😳",
+"file": "https://cdn2.videy.co/dpcEevNf1.mp4"
+},
+{
+"title": "Reaksi spontan yang bikin penasaran 😱",
+"file": "https://cdn2.videy.co/WtiEdTcU1.mp4"
+},
+{
+"title": "Kamu pasti ingin tahu kelanjutannya 😨",
+"file": "https://cdn2.videy.co/4IsNCljc1.mp4"
+},
+{
+"title": "Momen tak terduga tertangkap tanpa sengaja 😳",
+"file": "https://cdn2.videy.co/grleEx4L1.mp4"
+},
+{
+"title": "Tidak banyak yang memperhatikan bagian ini 😱",
+"file": "https://cdn2.videy.co/v7zxUfA61.mp4"
+},
+{
+"title": "Satu kejadian yang membuat semua orang penasaran 😨",
+"file": "https://cdn2.videy.co/q6XdHOhb1.mp4"
+},
+{
+"title": "Lihat apa yang terjadi setelah beberapa saat 😳",
+"file": "https://cdn2.videy.co/FxIadtzm1.mp4"
+},
+{
+"title": "Momen mengejutkan yang terjadi begitu cepat 😱",
+"file": "https://cdn2.videy.co/RkNJafxI1.mp4"
+},
+{
+"title": "Ternyata ada kejutan yang tidak terlihat di awal 😨",
+"file": "https://cdn2.videy.co/vuH0IlsL1.mp4"
+},
+{
+"title": "Kejadian ini bikin penasaran sampai selesai 😳",
+"file": "https://cdn2.videy.co/fU26g6Uh1.mp4"
+},
+{
+"title": "Momen yang langsung membuat suasana heboh 😱",
+"file": "https://cdn2.slicedrive.com/JJ8alJMU1.mp4"
+},
+{
+"title": "Tidak terduga, ternyata akhirnya seperti ini 😨",
+"file": "https://cdn2.slicedrive.com/eF8a0hc41.mp4"
+}
+
