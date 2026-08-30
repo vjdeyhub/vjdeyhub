@@ -25,6 +25,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+
 /* =========================
    HEADER
 ========================= */
@@ -33,28 +34,39 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
+
   display: flex;
   align-items: center;
   gap: 12px;
+
   min-height: 70px;
+
   padding: 11px 15px;
+
   background: rgba(8, 8, 8, 0.97);
+
   border-bottom: 1px solid var(--border);
+
   backdrop-filter: blur(10px);
 }
 
 .profile {
   width: 46px;
   height: 46px;
+
   flex-shrink: 0;
 }
 
 .profile img {
   width: 100%;
   height: 100%;
+
   display: block;
+
   object-fit: cover;
+
   border-radius: 50%;
+
   border: 2px solid var(--red);
 }
 
@@ -70,9 +82,12 @@ body {
 
 .brand p {
   margin-top: 4px;
+
   color: var(--muted);
+
   font-size: 12px;
 }
+
 
 /* =========================
    HERO
@@ -80,19 +95,24 @@ body {
 
 .hero {
   max-width: 1100px;
+
   margin: 0 auto;
+
   padding: 25px 15px 15px;
 }
 
 .hero h2 {
   font-size: 23px;
+
   margin-bottom: 7px;
 }
 
 .hero p {
   color: var(--muted);
+
   font-size: 13px;
 }
+
 
 /* =========================
    VIDEO GRID
@@ -100,21 +120,34 @@ body {
 
 .video-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
   gap: 12px;
+
   max-width: 1100px;
+
   margin: 0 auto;
+
   padding: 0 12px 80px;
 }
 
 .video-card {
   display: block;
+
   overflow: hidden;
+
   color: #fff;
+
   text-decoration: none;
+
   background: var(--card);
+
   border: 1px solid var(--border);
+
   border-radius: 12px;
+
   transition:
     transform .15s ease,
     background .15s ease;
@@ -128,45 +161,61 @@ body {
   transform: scale(.98);
 }
 
+
 /* =========================
    THUMBNAIL
 ========================= */
 
 .thumb {
   position: relative;
+
   width: 100%;
+
   aspect-ratio: 16 / 10;
+
   overflow: hidden;
+
   background: #000;
 }
 
 .thumb video {
   width: 100%;
   height: 100%;
+
   display: block;
+
   object-fit: cover;
+
   pointer-events: none;
 }
 
 .play-icon {
   position: absolute;
+
   left: 50%;
   top: 50%;
+
   width: 44px;
   height: 44px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
-  transform: translate(-50%, -50%);
+  transform:
+    translate(-50%, -50%);
 
   border-radius: 50%;
-  background: rgba(229, 9, 20, .94);
+
+  background:
+    rgba(229, 9, 20, .94);
 
   color: #fff;
+
   font-size: 18px;
 }
+
 
 /* =========================
    CARD CONTENT
@@ -178,15 +227,20 @@ body {
 
 .card-title {
   font-size: 14px;
+
   font-weight: 700;
+
   line-height: 1.35;
 }
 
 .card-meta {
   margin-top: 5px;
+
   color: var(--muted);
+
   font-size: 11px;
 }
+
 
 /* =========================
    PLAYER PAGE
@@ -194,21 +248,27 @@ body {
 
 .player-page {
   width: 100%;
+
   max-width: 900px;
+
   margin: 0 auto;
+
   padding: 15px 12px 85px;
 }
 
 .back-button {
   display: inline-flex;
+
   align-items: center;
 
   padding: 8px 11px;
 
   color: #fff;
+
   text-decoration: none;
 
   background: #1b1b1b;
+
   border-radius: 8px;
 
   font-size: 13px;
@@ -218,12 +278,14 @@ body {
   background: #252525;
 }
 
+
 /* =========================
    VIDEO PLAYER
 ========================= */
 
 .video-container {
   width: 100%;
+
   margin-top: 12px;
 
   overflow: hidden;
@@ -231,17 +293,20 @@ body {
   background: #000;
 
   border: 1px solid var(--border);
+
   border-radius: 12px;
 }
 
 .video-container video {
   width: 100%;
+
   max-height: 75vh;
 
   display: block;
 
   background: #000;
 }
+
 
 /* =========================
    VIDEO TITLE
@@ -253,6 +318,7 @@ body {
 
 .video-title h2 {
   font-size: 20px;
+
   line-height: 1.3;
 }
 
@@ -263,6 +329,7 @@ body {
 
   font-size: 13px;
 }
+
 
 /* =========================
    WATCH BUTTON
@@ -278,12 +345,15 @@ body {
   padding: 15px;
 
   border: 0;
+
   border-radius: 10px;
 
   background: var(--red);
+
   color: #fff;
 
   font-size: 15px;
+
   font-weight: 800;
 
   cursor: pointer;
@@ -299,6 +369,7 @@ body {
 
 .watch-button:disabled {
   opacity: .7;
+
   cursor: not-allowed;
 }
 
@@ -311,6 +382,7 @@ body {
 
   font-size: 11px;
 }
+
 
 /* =========================
    RELATED VIDEOS
@@ -337,20 +409,24 @@ body {
   padding: 13px;
 
   color: #fff;
+
   text-decoration: none;
 
   background: var(--card);
 
   border: 1px solid var(--border);
+
   border-radius: 10px;
 
   font-size: 13px;
+
   font-weight: 600;
 }
 
 .related-card:hover {
   background: var(--card-hover);
 }
+
 
 /* =========================
    LOADING
@@ -365,6 +441,7 @@ body {
 
   text-align: center;
 }
+
 
 /* =========================
    ERROR
@@ -382,6 +459,7 @@ body {
   font-size: 13px;
 }
 
+
 /* =========================
    FOOTER
 ========================= */
@@ -397,7 +475,8 @@ body {
 
   padding: 10px;
 
-  background: rgba(8, 8, 8, .96);
+  background:
+    rgba(8, 8, 8, .96);
 
   border-top: 1px solid var(--border);
 
@@ -407,6 +486,7 @@ body {
 
   font-size: 10px;
 }
+
 
 /* =========================
    DESKTOP
@@ -421,6 +501,7 @@ body {
 
 }
 
+
 /* =========================
    LARGE DESKTOP
 ========================= */
@@ -432,6 +513,7 @@ body {
   }
 
 }
+
 
 /* =========================
    SMALL MOBILE
@@ -499,4 +581,4 @@ body {
     font-size: 18px;
   }
 
-    }
+  }
