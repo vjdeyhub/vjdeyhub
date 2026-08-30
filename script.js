@@ -13,12 +13,10 @@ const AD_LINKS = [
     name: "Adsterra",
     url: "https://conductivebreeds.com/ra35mrxpj?key=a22b76d988f5c2de1a58d61240df16f0"
   },
-
   {
     name: "Kadam",
     url: "https://viiukuhe.com/dc/?blockID=427920"
   },
-
   {
     name: "Monetag",
     url: "https://omg10.com/4/9813487"
@@ -36,7 +34,7 @@ let lastAdTime = 0;
 
 
 /* =========================================================
-   INDEX IKLAN
+   AMBIL INDEX IKLAN
 ========================================================= */
 
 function getAdIndex() {
@@ -66,48 +64,184 @@ function openAd() {
 
   const now = Date.now();
 
-  if (now - lastAdTime < AD_COOLDOWN) {
+  /*
+    Mencegah iklan dibuka
+    berkali-kali dalam waktu singkat.
+  */
+
+  if (
+    now - lastAdTime <
+    AD_COOLDOWN
+  ) {
     return false;
   }
 
-  const validLinks = AD_LINKS.filter(function(item) {
 
-    return (
-      item &&
-      typeof item.url === "string" &&
-      /^https?:\/\//i.test(item.url)
-    );
+  const validLinks =
+    AD_LINKS.filter(function(item) {
 
-  });
+      return (
+        item &&
+        typeof item.url === "string" &&
+        /^https?:\/\//i.test(
+          item.url.trim()
+        )
+      );
+
+    });
+
 
   if (!validLinks.length) {
     return false;
   }
 
-  let index = getAdIndex();
 
-  if (index >= validLinks.length) {
+  let index =
+    getAdIndex();
+
+
+  if (
+    index >= validLinks.length
+  ) {
     index = 0;
   }
 
-  const selected = validLinks[index];
+
+  const selected =
+    validLinks[index];
+
+
+  /*
+    Simpan iklan berikutnya.
+    
+    Adsterra
+       ↓
+    Kadam
+       ↓
+    Monetag
+       ↓
+    kembali Adsterra
+  */
 
   localStorage.setItem(
     "adIndex",
     String(
-      (index + 1) % validLinks.length
+      (index + 1) %
+      validLinks.length
     )
   );
 
-  lastAdTime = now;
 
-  const newWindow = window.open(
-    selected.url,
-    "_blank",
-    "noopener,noreferrer"
-  );
+  lastAdTime =
+    now;
+
+
+  /*
+    Popup dibuka hanya
+    setelah interaksi pengguna.
+  */
+
+  const newWindow =
+    window.open(
+      selected.url,
+      "_blank",
+      "noopener,noreferrer"
+    );
+
 
   return !!newWindow;
+}
+
+
+/* =========================================================
+   NORMALISASI DATA VIDEO
+========================================================= */
+
+function normalizeVideo(
+  video,
+  index
+) {
+
+  if (
+    !video ||
+    typeof video !== "object"
+  ) {
+    return null;
+  }
+
+
+  /*
+    Mendukung:
+
+    url
+    atau
+
+    file
+  */
+
+  const videoUrl =
+    typeof video.url === "string" &&
+    video.url.trim()
+      ? video.url.trim()
+      : (
+          typeof video.file === "string"
+            ? video.file.trim()
+            : ""
+        );
+
+
+  if (!videoUrl) {
+    return null;
+  }
+
+
+  /*
+    ID:
+
+    Kalau ada ID valid,
+    gunakan ID tersebut.
+
+    Kalau tidak ada,
+    gunakan nomor array + 1.
+  */
+
+  let videoId =
+    parseInt(
+      video.id,
+      10
+    );
+
+
+  if (
+    Number.isNaN(videoId) ||
+    videoId < 1
+  ) {
+    videoId =
+      index + 1;
+  }
+
+
+  return {
+
+    id: videoId,
+
+    title:
+      typeof video.title === "string" &&
+      video.title.trim()
+        ? video.title.trim()
+        : "Video Viral",
+
+    url:
+      videoUrl,
+
+    description:
+      typeof video.description === "string" &&
+      video.description.trim()
+        ? video.description.trim()
+        : "Selamat menonton."
+
+  };
+
 }
 
 
@@ -119,46 +253,105 @@ async function loadVideos() {
 
   try {
 
-    const response = await fetch(
-      "./videos.json",
-      {
-        cache: "no-store"
-      }
-    );
+    const response =
+      await fetch(
+        "./videos.json",
+        {
+          cache: "no-store"
+        }
+      );
+
 
     if (!response.ok) {
+
       throw new Error(
         "videos.json tidak ditemukan."
       );
+
     }
 
-    const videos = await response.json();
 
-    if (!Array.isArray(videos)) {
+    const rawVideos =
+      await response.json();
+
+
+    if (
+      !Array.isArray(
+        rawVideos
+      )
+    ) {
+
       throw new Error(
-        "Format videos.json tidak valid."
+        "videos.json harus berupa array."
       );
+
     }
+
+
+    const videos =
+      rawVideos
+        .map(
+          function(video, index) {
+
+            return normalizeVideo(
+              video,
+              index
+            );
+
+          }
+        )
+        .filter(
+          function(video) {
+
+            return video !== null;
+
+          }
+        );
+
 
     if (!videos.length) {
+
       throw new Error(
-        "videos.json kosong."
+        "Tidak ada video valid di videos.json."
       );
+
     }
 
-    renderVideoList(videos);
 
-    renderPlayer(videos);
+    /*
+      Simpan data video
+      supaya bisa dipakai
+      halaman player.
+    */
 
-  } catch (error) {
+    window.VIDEO_DATA =
+      videos;
+
+
+    renderVideoList(
+      videos
+    );
+
+
+    renderPlayer(
+      videos
+    );
+
+  }
+
+  catch (error) {
 
     console.error(
       "Gagal memuat video:",
       error
     );
 
+
     const list =
-      document.getElementById("videoList");
+      document.getElementById(
+        "videoList"
+      );
+
 
     if (list) {
 
@@ -166,9 +359,27 @@ async function loadVideos() {
         <div class="error-message">
           Video belum dapat dimuat.
           <br>
-          Periksa file videos.json.
+          Pastikan file
+          <strong>videos.json</strong>
+          berada satu folder dengan
+          <strong>index.html</strong>.
         </div>
       `;
+
+    }
+
+
+    const player =
+      document.getElementById(
+        "videoPlayer"
+      );
+
+
+    if (player) {
+
+      showPlayerError(
+        "Data video tidak dapat dimuat. Periksa videos.json."
+      );
 
     }
 
@@ -181,122 +392,208 @@ async function loadVideos() {
    DAFTAR VIDEO
 ========================================================= */
 
-function renderVideoList(videos) {
+function renderVideoList(
+  videos
+) {
 
   const container =
-    document.getElementById("videoList");
+    document.getElementById(
+      "videoList"
+    );
+
 
   if (!container) {
     return;
   }
 
-  container.innerHTML = "";
 
-  videos.forEach(function(video, index) {
+  container.innerHTML =
+    "";
 
-    if (
-      !video ||
-      typeof video.file !== "string" ||
-      !video.file.trim()
-    ) {
-      return;
+
+  videos.forEach(
+    function(video) {
+
+      if (
+        !video ||
+        !video.url
+      ) {
+        return;
+      }
+
+
+      const card =
+        document.createElement(
+          "a"
+        );
+
+
+      card.className =
+        "video-card";
+
+
+      /*
+        ID dibuat berdasarkan
+        ID video sebenarnya.
+
+        Contoh:
+
+        player.html?id=1
+        player.html?id=200
+      */
+
+      card.href =
+        "./player.html?id=" +
+        encodeURIComponent(
+          video.id
+        );
+
+
+      /* =========================
+         THUMB
+      ========================== */
+
+      const thumb =
+        document.createElement(
+          "div"
+        );
+
+
+      thumb.className =
+        "thumb";
+
+
+      const videoElement =
+        document.createElement(
+          "video"
+        );
+
+
+      videoElement.src =
+        video.url;
+
+
+      videoElement.muted =
+        true;
+
+
+      videoElement.preload =
+        "metadata";
+
+
+      videoElement.playsInline =
+        true;
+
+
+      videoElement.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+
+      /*
+        Jangan autoplay thumbnail.
+      */
+
+
+      const playIcon =
+        document.createElement(
+          "div"
+        );
+
+
+      playIcon.className =
+        "play-icon";
+
+
+      playIcon.textContent =
+        "▶";
+
+
+      thumb.appendChild(
+        videoElement
+      );
+
+
+      thumb.appendChild(
+        playIcon
+      );
+
+
+      /* =========================
+         CONTENT
+      ========================== */
+
+      const content =
+        document.createElement(
+          "div"
+        );
+
+
+      content.className =
+        "card-content";
+
+
+      const title =
+        document.createElement(
+          "div"
+        );
+
+
+      title.className =
+        "card-title";
+
+
+      title.textContent =
+        video.title;
+
+
+      const meta =
+        document.createElement(
+          "div"
+        );
+
+
+      meta.className =
+        "card-meta";
+
+
+      meta.textContent =
+        "Video #" +
+        video.id;
+
+
+      content.appendChild(
+        title
+      );
+
+
+      content.appendChild(
+        meta
+      );
+
+
+      card.appendChild(
+        thumb
+      );
+
+
+      card.appendChild(
+        content
+      );
+
+
+      container.appendChild(
+        card
+      );
+
     }
-
-    const card =
-      document.createElement("a");
-
-    card.className =
-      "video-card";
-
-    card.href =
-      "./player.html?id=" +
-      encodeURIComponent(index);
-
-    const thumb =
-      document.createElement("div");
-
-    thumb.className =
-      "thumb";
-
-    const videoElement =
-      document.createElement("video");
-
-    videoElement.src =
-      video.file;
-
-    videoElement.muted =
-      true;
-
-    videoElement.preload =
-      "metadata";
-
-    videoElement.playsInline =
-      true;
-
-    videoElement.setAttribute(
-      "aria-hidden",
-      "true"
-    );
-
-    const playIcon =
-      document.createElement("div");
-
-    playIcon.className =
-      "play-icon";
-
-    playIcon.textContent =
-      "▶";
-
-    thumb.appendChild(
-      videoElement
-    );
-
-    thumb.appendChild(
-      playIcon
-    );
+  );
 
 
-    const content =
-      document.createElement("div");
-
-    content.className =
-      "card-content";
-
-
-    const title =
-      document.createElement("div");
-
-    title.className =
-      "card-title";
-
-    title.textContent =
-      video.title ||
-      "Video Viral";
-
-
-    const meta =
-      document.createElement("div");
-
-    meta.className =
-      "card-meta";
-
-    meta.textContent =
-      "Video #" +
-      (index + 1);
-
-
-    content.appendChild(title);
-    content.appendChild(meta);
-
-    card.appendChild(thumb);
-    card.appendChild(content);
-
-    container.appendChild(card);
-
-  });
-
-
-  if (!container.children.length) {
+  if (
+    !container.children.length
+  ) {
 
     container.innerHTML = `
       <div class="error-message">
@@ -310,15 +607,100 @@ function renderVideoList(videos) {
 
 
 /* =========================================================
+   CARI VIDEO BERDASARKAN ID
+========================================================= */
+
+function findVideoById(
+  videos,
+  requestedId
+) {
+
+  const id =
+    parseInt(
+      requestedId,
+      10
+    );
+
+
+  if (
+    Number.isNaN(id)
+  ) {
+    return null;
+  }
+
+
+  const found =
+    videos.find(
+      function(video) {
+
+        return (
+          Number(video.id) ===
+          id
+        );
+
+      }
+    );
+
+
+  return found || null;
+}
+
+
+/* =========================================================
+   CARI INDEX VIDEO
+========================================================= */
+
+function findVideoIndex(
+  videos,
+  requestedId
+) {
+
+  const id =
+    parseInt(
+      requestedId,
+      10
+    );
+
+
+  if (
+    Number.isNaN(id)
+  ) {
+    return -1;
+  }
+
+
+  return videos.findIndex(
+    function(video) {
+
+      return (
+        Number(video.id) ===
+        id
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
    PLAYER
 ========================================================= */
 
-function renderPlayer(videos) {
+function renderPlayer(
+  videos
+) {
 
   const player =
     document.getElementById(
       "videoPlayer"
     );
+
+
+  /*
+    Kalau bukan halaman player,
+    hentikan fungsi.
+  */
 
   if (!player) {
     return;
@@ -331,20 +713,41 @@ function renderPlayer(videos) {
     );
 
 
-  const id =
+  let requestedId =
     params.get("id");
 
 
-  let index =
-    parseInt(id, 10);
+  /*
+    Kalau tidak ada ID,
+    tampilkan video pertama.
+  */
 
+  if (!requestedId) {
+
+    requestedId =
+      videos[0].id;
+
+  }
+
+
+  let index =
+    findVideoIndex(
+      videos,
+      requestedId
+    );
+
+
+  /*
+    ID tidak ditemukan:
+    gunakan video pertama.
+  */
 
   if (
-    Number.isNaN(index) ||
-    index < 0 ||
-    index >= videos.length
+    index < 0
   ) {
+
     index = 0;
+
   }
 
 
@@ -354,8 +757,7 @@ function renderPlayer(videos) {
 
   if (
     !video ||
-    typeof video.file !== "string" ||
-    !video.file.trim()
+    !video.url
   ) {
 
     showPlayerError(
@@ -367,11 +769,16 @@ function renderPlayer(videos) {
 
 
   /* =========================
-     SET VIDEO
+     SET PLAYER
   ========================== */
 
   player.src =
-    video.file;
+    video.url;
+
+
+  player.preload =
+    "metadata";
+
 
   player.load();
 
@@ -385,11 +792,11 @@ function renderPlayer(videos) {
       "videoTitle"
     );
 
+
   if (title) {
 
     title.textContent =
-      video.title ||
-      "Video Viral";
+      video.title;
 
   }
 
@@ -403,11 +810,11 @@ function renderPlayer(videos) {
       "videoDescription"
     );
 
+
   if (description) {
 
     description.textContent =
-      video.description ||
-      "Selamat menonton.";
+      video.description;
 
   }
 
@@ -417,10 +824,7 @@ function renderPlayer(videos) {
   ========================== */
 
   document.title =
-    (
-      video.title ||
-      "Video Viral"
-    ) +
+    video.title +
     " - KUMPULAN VIDEO VIRAL";
 
 
@@ -450,71 +854,83 @@ function renderRelated(
       "relatedVideos"
     );
 
+
   if (!container) {
     return;
   }
 
-  container.innerHTML = "";
+
+  container.innerHTML =
+    "";
 
 
   const related =
     videos
-      .map(function(video, index) {
+      .map(
+        function(video, index) {
 
-        return {
-          video: video,
-          index: index
-        };
+          return {
+            video: video,
+            index: index
+          };
 
-      })
-      .filter(function(item) {
+        }
+      )
+      .filter(
+        function(item) {
 
-        return (
-          item.index !==
-          currentIndex
+          return (
+            item.index !==
+            currentIndex
+          );
+
+        }
+      )
+      .slice(
+        0,
+        6
+      );
+
+
+  related.forEach(
+    function(item) {
+
+      if (
+        !item.video ||
+        !item.video.url
+      ) {
+        return;
+      }
+
+
+      const link =
+        document.createElement(
+          "a"
         );
 
-      })
-      .slice(0, 6);
+
+      link.className =
+        "related-card";
 
 
-  related.forEach(function(item) {
+      link.href =
+        "./player.html?id=" +
+        encodeURIComponent(
+          item.video.id
+        );
 
-    if (
-      !item.video ||
-      !item.video.file
-    ) {
-      return;
+
+      link.textContent =
+        "▶ " +
+        item.video.title;
+
+
+      container.appendChild(
+        link
+      );
+
     }
-
-
-    const link =
-      document.createElement("a");
-
-    link.className =
-      "related-card";
-
-
-    link.href =
-      "./player.html?id=" +
-      encodeURIComponent(
-        item.index
-      );
-
-
-    link.textContent =
-      "▶ " +
-      (
-        item.video.title ||
-        "Video Viral"
-      );
-
-
-    container.appendChild(
-      link
-    );
-
-  });
+  );
 
 }
 
@@ -523,12 +939,21 @@ function renderRelated(
    ERROR PLAYER
 ========================================================= */
 
-function showPlayerError(message) {
+function showPlayerError(
+  message
+) {
+
+  const player =
+    document.getElementById(
+      "videoPlayer"
+    );
+
 
   const title =
     document.getElementById(
       "videoTitle"
     );
+
 
   const description =
     document.getElementById(
@@ -536,15 +961,30 @@ function showPlayerError(message) {
     );
 
 
+  if (player) {
+
+    player.removeAttribute(
+      "src"
+    );
+
+    player.load();
+
+  }
+
+
   if (title) {
+
     title.textContent =
       "Video tidak tersedia";
+
   }
 
 
   if (description) {
+
     description.textContent =
       message;
+
   }
 
 }
@@ -563,14 +1003,33 @@ document.addEventListener(
         "#watchButton"
       );
 
+
     if (!button) {
       return;
     }
 
 
-    /* =========================
-       IKLAN
-    ========================== */
+    /*
+      Cegah klik ganda
+      terlalu cepat.
+    */
+
+    if (
+      button.dataset.busy ===
+      "1"
+    ) {
+      return;
+    }
+
+
+    button.dataset.busy =
+      "1";
+
+
+    /*
+      Buka iklan hanya
+      dari klik pengguna.
+    */
 
     openAd();
 
@@ -584,28 +1043,81 @@ document.addEventListener(
         "videoPlayer"
       );
 
-    if (!player) {
-      return;
+
+    if (player) {
+
+      const playPromise =
+        player.play();
+
+
+      if (
+        playPromise &&
+        typeof playPromise.catch ===
+        "function"
+      ) {
+
+        playPromise.catch(
+          function(error) {
+
+            console.warn(
+              "Video belum dapat diputar:",
+              error
+            );
+
+          }
+        );
+
+      }
+
     }
 
 
-    const playPromise =
-      player.play();
+    /*
+      Aktifkan kembali tombol
+      setelah beberapa saat.
+    */
+
+    setTimeout(
+      function() {
+
+        button.dataset.busy =
+          "0";
+
+      },
+      1000
+    );
+
+  }
+);
+
+
+/* =========================================================
+   HANDLE ERROR VIDEO
+========================================================= */
+
+document.addEventListener(
+  "error",
+  function(event) {
+
+    const element =
+      event.target;
 
 
     if (
-      playPromise &&
-      typeof playPromise.catch ===
-      "function"
+      element &&
+      element.tagName ===
+      "VIDEO"
     ) {
 
-      playPromise.catch(
-        function() {}
+      console.warn(
+        "Video gagal dimuat:",
+        element.src
       );
 
     }
 
-  }
+  },
+  true
 );
 
 
