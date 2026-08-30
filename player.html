@@ -2,96 +2,148 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <meta name="description" content="Tonton video viral terbaru.">
-  <meta name="robots" content="index,follow">
+  <meta
+    name="robots"
+    content="index,follow"
+  >
 
-  <title>Video</title>
+  <title>Video - KUMPULAN VIDEO VIRAL</title>
 
-  <link rel="stylesheet" href="./style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 </head>
 
 <body>
 
-<header class="topbar">
+  <!-- =========================
+       HEADER
+  ========================== -->
 
-  <a href="./index.html" class="back-button">
-    ← Kembali
-  </a>
+  <header class="topbar">
 
-  <div class="brand">
-    <h1>KUMPULAN VIDEO VIRAL</h1>
-    <p>Video terbaru dan terpopuler</p>
-  </div>
-
-</header>
-
-
-<main class="player-page">
-
-  <div class="video-container">
-
-    <video
-      id="videoPlayer"
-      controls
-      playsinline
-      preload="metadata"
-    ></video>
-
-  </div>
-
-
-  <section class="video-title">
-
-    <h2 id="videoTitle">
-      Memuat video...
-    </h2>
-
-    <p id="videoDescription">
-      Selamat menonton.
-    </p>
-
-  </section>
-
-
-  <div class="action-area">
-
-    <button
-      type="button"
-      id="watchButton"
-      class="watch-button"
+    <a
+      href="index.html"
+      class="back-button"
     >
-      ▶ Tonton Video
-    </button>
+      ← Kembali
+    </a>
 
-    <div class="ad-note">
-      Klik tombol untuk mulai menonton
+    <div class="brand">
+
+      <h1>
+        KUMPULAN VIDEO VIRAL
+      </h1>
+
+      <p>
+        Video terbaru dan terpopuler
+      </p>
+
     </div>
 
+  </header>
+
+
+  <!-- =========================
+       PLAYER PAGE
+  ========================== -->
+
+  <main class="player-page">
+
+    <!-- =========================
+         VIDEO PLAYER
+    ========================== -->
+
+    <div class="video-container">
+
+      <video
+        id="videoPlayer"
+        controls
+        playsinline
+        preload="metadata"
+      ></video>
+
+    </div>
+
+
+    <!-- =========================
+         VIDEO INFORMATION
+    ========================== -->
+
+    <section class="video-title">
+
+      <h2 id="videoTitle">
+        Memuat video...
+      </h2>
+
+      <p id="videoDescription">
+        Selamat menonton.
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         WATCH BUTTON
+    ========================== -->
+
+    <div class="action-area">
+
+      <button
+        type="button"
+        id="watchButton"
+        class="watch-button"
+      >
+        ▶ Tonton Video
+      </button>
+
+      <div class="ad-note">
+        Klik tombol untuk mulai menonton
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         RELATED VIDEOS
+    ========================== -->
+
+    <section class="related-section">
+
+      <h3>
+        Video lainnya
+      </h3>
+
+      <div
+        id="relatedVideos"
+        class="related-grid"
+      ></div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <div class="bottom-info">
+    © 2026 Kumpulan Video Viral
   </div>
 
 
-  <section class="related-section">
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
 
-    <h3>Video lainnya</h3>
-
-    <div
-      id="relatedVideos"
-      class="related-grid"
-    ></div>
-
-  </section>
-
-</main>
-
-
-<div class="bottom-info">
-  © 2026 Kumpulan Video Viral
-</div>
-
-
-<script src="./script.js"></script>
+  <script src="script.js"></script>
 
 </body>
 </html>
