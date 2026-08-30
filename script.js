@@ -1,24 +1,22 @@
 /* =========================================================
    KUMPULAN VIDEO VIRAL
-   SCRIPT FINAL - DIPERBAIKI
+   SCRIPT FINAL
 ========================================================= */
 
 
 /* =========================================================
-   LINK IKLAN
-========================================================= */
+   SMARTLINK
+   ========================================================= */
 
-const AD_LINKS = [
+const SMARTLINKS = [
   {
     name: "Adsterra",
-    url: "https://conductivebreeds.com/ra35mrxpj?key=a22b76d988f5c2de1a58d61240df16f0"
-  },
-
-  {
-    name: "Kadam",
     url: "https://viiukuhe.com/dc/?blockID=427920"
   },
-
+  {
+    name: "Kadam",
+    url: "https://conductivebreeds.com/ra35mrxpj?key=a22b76d988f5c2de1a58d61240df16f0"
+  },
   {
     name: "Monetag",
     url: "https://omg10.com/4/9813487"
@@ -27,29 +25,20 @@ const AD_LINKS = [
 
 
 /* =========================================================
-   PENGATURAN IKLAN
+   INDEX SMARTLINK
 ========================================================= */
 
-const AD_COOLDOWN = 60 * 1000;
-
-let lastAdTime = 0;
-
-
-/* =========================================================
-   INDEX IKLAN
-========================================================= */
-
-function getAdIndex() {
+function getSmartlinkIndex() {
 
   let index = parseInt(
-    localStorage.getItem("adIndex") || "0",
+    localStorage.getItem("smartlinkIndex") || "0",
     10
   );
 
   if (
     Number.isNaN(index) ||
     index < 0 ||
-    index >= AD_LINKS.length
+    index >= SMARTLINKS.length
   ) {
     index = 0;
   }
@@ -59,75 +48,360 @@ function getAdIndex() {
 
 
 /* =========================================================
-   BUKA IKLAN
+   BUKA SMARTLINK
 ========================================================= */
 
-function openAd() {
+function openSmartlink() {
 
-  const now = Date.now();
+  const validLinks = SMARTLINKS.filter(function(item) {
 
-  if (
-    now - lastAdTime <
-    AD_COOLDOWN
-  ) {
-    return false;
-  }
+    return (
+      item &&
+      typeof item.url === "string" &&
+      /^https?:\/\//i.test(item.url)
+    );
 
-
-  const validLinks =
-    AD_LINKS.filter(function(item) {
-
-      return (
-        item &&
-        typeof item.url === "string" &&
-        /^https?:\/\//i.test(item.url)
-      );
-
-    });
+  });
 
 
   if (!validLinks.length) {
-    return false;
+    return;
   }
 
 
-  let index =
-    getAdIndex();
+  let index = getSmartlinkIndex();
 
-
-  if (
-    index >= validLinks.length
-  ) {
+  if (index >= validLinks.length) {
     index = 0;
   }
 
 
-  const selected =
-    validLinks[index];
+  const selected = validLinks[index];
 
 
   localStorage.setItem(
-    "adIndex",
+    "smartlinkIndex",
     String(
-      (index + 1) %
-      validLinks.length
+      (index + 1) % validLinks.length
     )
   );
 
 
-  lastAdTime =
-    now;
+  /*
+     Dibuka hanya setelah pengguna
+     menekan tombol konfirmasi usia.
+  */
+
+  window.open(
+    selected.url,
+    "_blank",
+    "noopener,noreferrer"
+  );
+
+}
 
 
-  const newWindow =
-    window.open(
-      selected.url,
-      "_blank",
-      "noopener,noreferrer"
+/* =========================================================
+   KONFIRMASI USIA
+========================================================= */
+
+let ageConfirmed = false;
+let agePopupShown = false;
+
+
+function showAgeConfirmation() {
+
+  if (ageConfirmed || agePopupShown) {
+    return;
+  }
+
+
+  agePopupShown = true;
+
+
+  const overlay =
+    document.createElement("div");
+
+  overlay.id =
+    "ageConfirmation";
+
+
+  overlay.innerHTML = `
+
+    <div class="age-box">
+
+      <div class="age-icon">
+        🔞
+      </div>
+
+      <h2>
+        Konfirmasi Usia
+      </h2>
+
+      <p>
+        Apakah Anda sudah berusia 18 tahun atau lebih?
+      </p>
+
+      <div class="age-buttons">
+
+        <button
+          type="button"
+          id="ageYes"
+        >
+          Saya 18+
+        </button>
+
+        <button
+          type="button"
+          id="ageNo"
+        >
+          Keluar
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  document.body.appendChild(
+    overlay
+  );
+
+
+  const yesButton =
+    document.getElementById("ageYes");
+
+
+  const noButton =
+    document.getElementById("ageNo");
+
+
+  yesButton.addEventListener(
+    "click",
+    function() {
+
+      ageConfirmed = true;
+
+      overlay.remove();
+
+      openSmartlink();
+
+      playVideo();
+
+    }
+  );
+
+
+  noButton.addEventListener(
+    "click",
+    function() {
+
+      window.location.href =
+        "about:blank";
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   CSS POPUP
+========================================================= */
+
+function addAgePopupStyle() {
+
+  if (
+    document.getElementById(
+      "agePopupStyle"
+    )
+  ) {
+    return;
+  }
+
+
+  const style =
+    document.createElement("style");
+
+
+  style.id =
+    "agePopupStyle";
+
+
+  style.textContent = `
+
+    #ageConfirmation {
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0,0,0,.78);
+      box-sizing: border-box;
+    }
+
+    .age-box {
+      width: 100%;
+      max-width: 380px;
+      padding: 28px 22px;
+      border-radius: 16px;
+      background: #fff;
+      color: #111;
+      text-align: center;
+      box-sizing: border-box;
+      box-shadow: 0 15px 50px rgba(0,0,0,.35);
+    }
+
+    .age-icon {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .age-box h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+
+    .age-box p {
+      margin: 0 0 22px;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    .age-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .age-buttons button {
+      flex: 1;
+      min-height: 46px;
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    #ageYes {
+      background: #111;
+      color: #fff;
+    }
+
+    #ageNo {
+      background: #e9e9e9;
+      color: #111;
+    }
+
+    @media (max-width: 480px) {
+
+      .age-box {
+        max-width: 340px;
+      }
+
+      .age-buttons {
+        flex-direction: column;
+      }
+
+    }
+
+  `;
+
+
+  document.head.appendChild(
+    style
+  );
+
+}
+
+
+/* =========================================================
+   PLAY VIDEO
+========================================================= */
+
+function playVideo() {
+
+  const player =
+    document.getElementById(
+      "videoPlayer"
     );
 
 
-  return !!newWindow;
+  if (!player) {
+    return;
+  }
+
+
+  const promise =
+    player.play();
+
+
+  if (
+    promise &&
+    typeof promise.catch ===
+    "function"
+  ) {
+
+    promise.catch(
+      function() {}
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   TIMER 15 DETIK
+========================================================= */
+
+function startAgeTimer() {
+
+  const player =
+    document.getElementById(
+      "videoPlayer"
+    );
+
+
+  if (!player) {
+    return;
+  }
+
+
+  let timerStarted = false;
+
+
+  player.addEventListener(
+    "timeupdate",
+    function() {
+
+      if (
+        ageConfirmed ||
+        agePopupShown
+      ) {
+        return;
+      }
+
+
+      if (
+        player.currentTime >= 15 &&
+        !timerStarted
+      ) {
+
+        timerStarted = true;
+
+        showAgeConfirmation();
+
+      }
+
+    }
+  );
 
 }
 
@@ -225,9 +499,7 @@ async function loadVideos() {
    DAFTAR VIDEO
 ========================================================= */
 
-function renderVideoList(
-  videos
-) {
+function renderVideoList(videos) {
 
   const container =
     document.getElementById(
@@ -246,11 +518,6 @@ function renderVideoList(
   videos.forEach(
     function(video, index) {
 
-
-      /* =========================
-         VALIDASI VIDEO
-      ========================== */
-
       if (
         !video ||
         typeof video.url !== "string" ||
@@ -259,10 +526,6 @@ function renderVideoList(
         return;
       }
 
-
-      /* =========================
-         CARD
-      ========================== */
 
       const card =
         document.createElement("a");
@@ -274,14 +537,8 @@ function renderVideoList(
 
       card.href =
         "./player.html?id=" +
-        encodeURIComponent(
-          index
-        );
+        encodeURIComponent(index);
 
-
-      /* =========================
-         THUMBNAIL
-      ========================== */
 
       const thumb =
         document.createElement("div");
@@ -338,10 +595,6 @@ function renderVideoList(
         playIcon
       );
 
-
-      /* =========================
-         CONTENT
-      ========================== */
 
       const content =
         document.createElement("div");
@@ -408,10 +661,6 @@ function renderVideoList(
   );
 
 
-  /* =========================
-     JIKA KOSONG
-  ========================== */
-
   if (
     !container.children.length
   ) {
@@ -431,9 +680,7 @@ function renderVideoList(
    PLAYER
 ========================================================= */
 
-function renderPlayer(
-  videos
-) {
+function renderPlayer(videos) {
 
   const player =
     document.getElementById(
@@ -445,10 +692,6 @@ function renderPlayer(
     return;
   }
 
-
-  /* =========================
-     AMBIL ID URL
-  ========================== */
 
   const params =
     new URLSearchParams(
@@ -482,10 +725,6 @@ function renderPlayer(
     videos[index];
 
 
-  /* =========================
-     VALIDASI
-  ========================== */
-
   if (
     !video ||
     typeof video.url !== "string" ||
@@ -501,20 +740,12 @@ function renderPlayer(
   }
 
 
-  /* =========================
-     SET VIDEO
-  ========================== */
-
   player.src =
     video.url;
 
 
   player.load();
 
-
-  /* =========================
-     TITLE
-  ========================== */
 
   const title =
     document.getElementById(
@@ -531,10 +762,6 @@ function renderPlayer(
   }
 
 
-  /* =========================
-     DESCRIPTION
-  ========================== */
-
   const description =
     document.getElementById(
       "videoDescription"
@@ -550,10 +777,6 @@ function renderPlayer(
   }
 
 
-  /* =========================
-     DOCUMENT TITLE
-  ========================== */
-
   document.title =
     (
       video.title ||
@@ -562,14 +785,13 @@ function renderPlayer(
     " - KUMPULAN VIDEO VIRAL";
 
 
-  /* =========================
-     RELATED
-  ========================== */
-
   renderRelated(
     videos,
     index
   );
+
+
+  startAgeTimer();
 
 }
 
@@ -680,9 +902,7 @@ function renderRelated(
    ERROR PLAYER
 ========================================================= */
 
-function showPlayerError(
-  message
-) {
+function showPlayerError(message) {
 
   const title =
     document.getElementById(
@@ -715,65 +935,43 @@ function showPlayerError(
 
 
 /* =========================================================
-   TOMBOL TONTON
+   POPUNDER ADSTERRA
 ========================================================= */
 
-document.addEventListener(
-  "click",
-  function(event) {
+function loadPopunder() {
 
-
-    const button =
-      event.target.closest(
-        "#watchButton"
-      );
-
-
-    if (!button) {
-      return;
-    }
-
-
-    /* =========================
-       IKLAN
-    ========================== */
-
-    openAd();
-
-
-    /* =========================
-       PLAY VIDEO
-    ========================== */
-
-    const player =
-      document.getElementById(
-        "videoPlayer"
-      );
-
-
-    if (!player) {
-      return;
-    }
-
-
-    const playPromise =
-      player.play();
-
-
-    if (
-      playPromise &&
-      typeof playPromise.catch ===
-      "function"
-    ) {
-
-      playPromise.catch(
-        function() {}
-      );
-
-    }
-
+  if (
+    document.getElementById(
+      "adsterraPopunder"
+    )
+  ) {
+    return;
   }
-);
+
+
+  const script =
+    document.createElement(
+      "script"
+    );
+
+
+  script.id =
+    "adsterraPopunder";
+
+
+  script.src =
+    "https://conductivebreeds.com/db/79/3a/db793a3e57b74080ac30338894ba8a75.js";
+
+
+  script.async =
+    true;
+
+
+  document.body.appendChild(
+    script
+  );
+
+}
 
 
 /* =========================================================
@@ -783,6 +981,10 @@ document.addEventListener(
 document.addEventListener(
   "DOMContentLoaded",
   function() {
+
+    addAgePopupStyle();
+
+    loadPopunder();
 
     loadVideos();
 
