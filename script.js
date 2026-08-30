@@ -1,6 +1,6 @@
 /* =========================================================
    KUMPULAN VIDEO VIRAL
-   SCRIPT FINAL
+   SCRIPT FINAL - DIPERBAIKI
 ========================================================= */
 
 
@@ -13,10 +13,12 @@ const AD_LINKS = [
     name: "Adsterra",
     url: "https://conductivebreeds.com/ra35mrxpj?key=a22b76d988f5c2de1a58d61240df16f0"
   },
+
   {
     name: "Kadam",
     url: "https://viiukuhe.com/dc/?blockID=427920"
   },
+
   {
     name: "Monetag",
     url: "https://omg10.com/4/9813487"
@@ -34,7 +36,7 @@ let lastAdTime = 0;
 
 
 /* =========================================================
-   AMBIL INDEX IKLAN
+   INDEX IKLAN
 ========================================================= */
 
 function getAdIndex() {
@@ -64,11 +66,6 @@ function openAd() {
 
   const now = Date.now();
 
-  /*
-    Mencegah iklan dibuka
-    berkali-kali dalam waktu singkat.
-  */
-
   if (
     now - lastAdTime <
     AD_COOLDOWN
@@ -83,9 +80,7 @@ function openAd() {
       return (
         item &&
         typeof item.url === "string" &&
-        /^https?:\/\//i.test(
-          item.url.trim()
-        )
+        /^https?:\/\//i.test(item.url)
       );
 
     });
@@ -111,18 +106,6 @@ function openAd() {
     validLinks[index];
 
 
-  /*
-    Simpan iklan berikutnya.
-    
-    Adsterra
-       ↓
-    Kadam
-       ↓
-    Monetag
-       ↓
-    kembali Adsterra
-  */
-
   localStorage.setItem(
     "adIndex",
     String(
@@ -136,11 +119,6 @@ function openAd() {
     now;
 
 
-  /*
-    Popup dibuka hanya
-    setelah interaksi pengguna.
-  */
-
   const newWindow =
     window.open(
       selected.url,
@@ -150,97 +128,6 @@ function openAd() {
 
 
   return !!newWindow;
-}
-
-
-/* =========================================================
-   NORMALISASI DATA VIDEO
-========================================================= */
-
-function normalizeVideo(
-  video,
-  index
-) {
-
-  if (
-    !video ||
-    typeof video !== "object"
-  ) {
-    return null;
-  }
-
-
-  /*
-    Mendukung:
-
-    url
-    atau
-
-    file
-  */
-
-  const videoUrl =
-    typeof video.url === "string" &&
-    video.url.trim()
-      ? video.url.trim()
-      : (
-          typeof video.file === "string"
-            ? video.file.trim()
-            : ""
-        );
-
-
-  if (!videoUrl) {
-    return null;
-  }
-
-
-  /*
-    ID:
-
-    Kalau ada ID valid,
-    gunakan ID tersebut.
-
-    Kalau tidak ada,
-    gunakan nomor array + 1.
-  */
-
-  let videoId =
-    parseInt(
-      video.id,
-      10
-    );
-
-
-  if (
-    Number.isNaN(videoId) ||
-    videoId < 1
-  ) {
-    videoId =
-      index + 1;
-  }
-
-
-  return {
-
-    id: videoId,
-
-    title:
-      typeof video.title === "string" &&
-      video.title.trim()
-        ? video.title.trim()
-        : "Video Viral",
-
-    url:
-      videoUrl,
-
-    description:
-      typeof video.description === "string" &&
-      video.description.trim()
-        ? video.description.trim()
-        : "Selamat menonton."
-
-  };
 
 }
 
@@ -271,61 +158,26 @@ async function loadVideos() {
     }
 
 
-    const rawVideos =
+    const videos =
       await response.json();
 
 
-    if (
-      !Array.isArray(
-        rawVideos
-      )
-    ) {
+    if (!Array.isArray(videos)) {
 
       throw new Error(
-        "videos.json harus berupa array."
+        "Format videos.json tidak valid."
       );
 
     }
-
-
-    const videos =
-      rawVideos
-        .map(
-          function(video, index) {
-
-            return normalizeVideo(
-              video,
-              index
-            );
-
-          }
-        )
-        .filter(
-          function(video) {
-
-            return video !== null;
-
-          }
-        );
 
 
     if (!videos.length) {
 
       throw new Error(
-        "Tidak ada video valid di videos.json."
+        "videos.json kosong."
       );
 
     }
-
-
-    /*
-      Simpan data video
-      supaya bisa dipakai
-      halaman player.
-    */
-
-    window.VIDEO_DATA =
-      videos;
 
 
     renderVideoList(
@@ -337,9 +189,8 @@ async function loadVideos() {
       videos
     );
 
-  }
 
-  catch (error) {
+  } catch (error) {
 
     console.error(
       "Gagal memuat video:",
@@ -359,27 +210,9 @@ async function loadVideos() {
         <div class="error-message">
           Video belum dapat dimuat.
           <br>
-          Pastikan file
-          <strong>videos.json</strong>
-          berada satu folder dengan
-          <strong>index.html</strong>.
+          Periksa file videos.json.
         </div>
       `;
-
-    }
-
-
-    const player =
-      document.getElementById(
-        "videoPlayer"
-      );
-
-
-    if (player) {
-
-      showPlayerError(
-        "Data video tidak dapat dimuat. Periksa videos.json."
-      );
 
     }
 
@@ -407,56 +240,51 @@ function renderVideoList(
   }
 
 
-  container.innerHTML =
-    "";
+  container.innerHTML = "";
 
 
   videos.forEach(
-    function(video) {
+    function(video, index) {
+
+
+      /* =========================
+         VALIDASI VIDEO
+      ========================== */
 
       if (
         !video ||
-        !video.url
+        typeof video.url !== "string" ||
+        !video.url.trim()
       ) {
         return;
       }
 
 
+      /* =========================
+         CARD
+      ========================== */
+
       const card =
-        document.createElement(
-          "a"
-        );
+        document.createElement("a");
 
 
       card.className =
         "video-card";
 
 
-      /*
-        ID dibuat berdasarkan
-        ID video sebenarnya.
-
-        Contoh:
-
-        player.html?id=1
-        player.html?id=200
-      */
-
       card.href =
         "./player.html?id=" +
         encodeURIComponent(
-          video.id
+          index
         );
 
 
       /* =========================
-         THUMB
+         THUMBNAIL
       ========================== */
 
       const thumb =
-        document.createElement(
-          "div"
-        );
+        document.createElement("div");
 
 
       thumb.className =
@@ -464,9 +292,7 @@ function renderVideoList(
 
 
       const videoElement =
-        document.createElement(
-          "video"
-        );
+        document.createElement("video");
 
 
       videoElement.src =
@@ -491,15 +317,8 @@ function renderVideoList(
       );
 
 
-      /*
-        Jangan autoplay thumbnail.
-      */
-
-
       const playIcon =
-        document.createElement(
-          "div"
-        );
+        document.createElement("div");
 
 
       playIcon.className =
@@ -525,9 +344,7 @@ function renderVideoList(
       ========================== */
 
       const content =
-        document.createElement(
-          "div"
-        );
+        document.createElement("div");
 
 
       content.className =
@@ -535,9 +352,7 @@ function renderVideoList(
 
 
       const title =
-        document.createElement(
-          "div"
-        );
+        document.createElement("div");
 
 
       title.className =
@@ -545,13 +360,12 @@ function renderVideoList(
 
 
       title.textContent =
-        video.title;
+        video.title ||
+        "Video Viral";
 
 
       const meta =
-        document.createElement(
-          "div"
-        );
+        document.createElement("div");
 
 
       meta.className =
@@ -560,7 +374,10 @@ function renderVideoList(
 
       meta.textContent =
         "Video #" +
-        video.id;
+        (
+          video.id ||
+          index + 1
+        );
 
 
       content.appendChild(
@@ -591,6 +408,10 @@ function renderVideoList(
   );
 
 
+  /* =========================
+     JIKA KOSONG
+  ========================== */
+
   if (
     !container.children.length
   ) {
@@ -602,83 +423,6 @@ function renderVideoList(
     `;
 
   }
-
-}
-
-
-/* =========================================================
-   CARI VIDEO BERDASARKAN ID
-========================================================= */
-
-function findVideoById(
-  videos,
-  requestedId
-) {
-
-  const id =
-    parseInt(
-      requestedId,
-      10
-    );
-
-
-  if (
-    Number.isNaN(id)
-  ) {
-    return null;
-  }
-
-
-  const found =
-    videos.find(
-      function(video) {
-
-        return (
-          Number(video.id) ===
-          id
-        );
-
-      }
-    );
-
-
-  return found || null;
-}
-
-
-/* =========================================================
-   CARI INDEX VIDEO
-========================================================= */
-
-function findVideoIndex(
-  videos,
-  requestedId
-) {
-
-  const id =
-    parseInt(
-      requestedId,
-      10
-    );
-
-
-  if (
-    Number.isNaN(id)
-  ) {
-    return -1;
-  }
-
-
-  return videos.findIndex(
-    function(video) {
-
-      return (
-        Number(video.id) ===
-        id
-      );
-
-    }
-  );
 
 }
 
@@ -697,15 +441,14 @@ function renderPlayer(
     );
 
 
-  /*
-    Kalau bukan halaman player,
-    hentikan fungsi.
-  */
-
   if (!player) {
     return;
   }
 
+
+  /* =========================
+     AMBIL ID URL
+  ========================== */
 
   const params =
     new URLSearchParams(
@@ -713,37 +456,21 @@ function renderPlayer(
     );
 
 
-  let requestedId =
+  const id =
     params.get("id");
 
 
-  /*
-    Kalau tidak ada ID,
-    tampilkan video pertama.
-  */
-
-  if (!requestedId) {
-
-    requestedId =
-      videos[0].id;
-
-  }
-
-
   let index =
-    findVideoIndex(
-      videos,
-      requestedId
+    parseInt(
+      id,
+      10
     );
 
 
-  /*
-    ID tidak ditemukan:
-    gunakan video pertama.
-  */
-
   if (
-    index < 0
+    Number.isNaN(index) ||
+    index < 0 ||
+    index >= videos.length
   ) {
 
     index = 0;
@@ -755,9 +482,14 @@ function renderPlayer(
     videos[index];
 
 
+  /* =========================
+     VALIDASI
+  ========================== */
+
   if (
     !video ||
-    !video.url
+    typeof video.url !== "string" ||
+    !video.url.trim()
   ) {
 
     showPlayerError(
@@ -765,19 +497,16 @@ function renderPlayer(
     );
 
     return;
+
   }
 
 
   /* =========================
-     SET PLAYER
+     SET VIDEO
   ========================== */
 
   player.src =
     video.url;
-
-
-  player.preload =
-    "metadata";
 
 
   player.load();
@@ -796,7 +525,8 @@ function renderPlayer(
   if (title) {
 
     title.textContent =
-      video.title;
+      video.title ||
+      "Video Viral";
 
   }
 
@@ -814,7 +544,8 @@ function renderPlayer(
   if (description) {
 
     description.textContent =
-      video.description;
+      video.description ||
+      "Selamat menonton.";
 
   }
 
@@ -824,7 +555,10 @@ function renderPlayer(
   ========================== */
 
   document.title =
-    video.title +
+    (
+      video.title ||
+      "Video Viral"
+    ) +
     " - KUMPULAN VIDEO VIRAL";
 
 
@@ -886,6 +620,18 @@ function renderRelated(
 
         }
       )
+      .filter(
+        function(item) {
+
+          return (
+            item.video &&
+            typeof item.video.url ===
+            "string" &&
+            item.video.url.trim()
+          );
+
+        }
+      )
       .slice(
         0,
         6
@@ -894,14 +640,6 @@ function renderRelated(
 
   related.forEach(
     function(item) {
-
-      if (
-        !item.video ||
-        !item.video.url
-      ) {
-        return;
-      }
-
 
       const link =
         document.createElement(
@@ -916,13 +654,16 @@ function renderRelated(
       link.href =
         "./player.html?id=" +
         encodeURIComponent(
-          item.video.id
+          item.index
         );
 
 
       link.textContent =
         "▶ " +
-        item.video.title;
+        (
+          item.video.title ||
+          "Video Viral"
+        );
 
 
       container.appendChild(
@@ -943,12 +684,6 @@ function showPlayerError(
   message
 ) {
 
-  const player =
-    document.getElementById(
-      "videoPlayer"
-    );
-
-
   const title =
     document.getElementById(
       "videoTitle"
@@ -959,17 +694,6 @@ function showPlayerError(
     document.getElementById(
       "videoDescription"
     );
-
-
-  if (player) {
-
-    player.removeAttribute(
-      "src"
-    );
-
-    player.load();
-
-  }
 
 
   if (title) {
@@ -998,6 +722,7 @@ document.addEventListener(
   "click",
   function(event) {
 
+
     const button =
       event.target.closest(
         "#watchButton"
@@ -1009,27 +734,9 @@ document.addEventListener(
     }
 
 
-    /*
-      Cegah klik ganda
-      terlalu cepat.
-    */
-
-    if (
-      button.dataset.busy ===
-      "1"
-    ) {
-      return;
-    }
-
-
-    button.dataset.busy =
-      "1";
-
-
-    /*
-      Buka iklan hanya
-      dari klik pengguna.
-    */
+    /* =========================
+       IKLAN
+    ========================== */
 
     openAd();
 
@@ -1044,80 +751,28 @@ document.addEventListener(
       );
 
 
-    if (player) {
-
-      const playPromise =
-        player.play();
-
-
-      if (
-        playPromise &&
-        typeof playPromise.catch ===
-        "function"
-      ) {
-
-        playPromise.catch(
-          function(error) {
-
-            console.warn(
-              "Video belum dapat diputar:",
-              error
-            );
-
-          }
-        );
-
-      }
-
+    if (!player) {
+      return;
     }
 
 
-    /*
-      Aktifkan kembali tombol
-      setelah beberapa saat.
-    */
-
-    setTimeout(
-      function() {
-
-        button.dataset.busy =
-          "0";
-
-      },
-      1000
-    );
-
-  }
-);
-
-
-/* =========================================================
-   HANDLE ERROR VIDEO
-========================================================= */
-
-document.addEventListener(
-  "error",
-  function(event) {
-
-    const element =
-      event.target;
+    const playPromise =
+      player.play();
 
 
     if (
-      element &&
-      element.tagName ===
-      "VIDEO"
+      playPromise &&
+      typeof playPromise.catch ===
+      "function"
     ) {
 
-      console.warn(
-        "Video gagal dimuat:",
-        element.src
+      playPromise.catch(
+        function() {}
       );
 
     }
 
-  },
-  true
+  }
 );
 
 
