@@ -1,29 +1,14 @@
 /* =========================================================
    KUMPULAN VIDEO VIRAL
-   SCRIPT.JS FINAL
-   ---------------------------------------------------------
-   VIDEO:
-   videos.json
-   format:
-   id + title + url + description
-
-   IKLAN:
-   Adsterra → Kadam → Monetag
-
-   IKLAN DIBUKA:
-   Hanya ketika tombol "Tonton Video" diklik
-
-   COOLDOWN:
-   60 detik
+   SCRIPT FINAL
 ========================================================= */
 
 
 /* =========================================================
-   PENGATURAN IKLAN
+   LINK IKLAN
 ========================================================= */
 
 const AD_LINKS = [
-
   {
     name: "Adsterra",
     url: "https://conductivebreeds.com/ra35mrxpj?key=a22b76d988f5c2de1a58d61240df16f0"
@@ -38,29 +23,26 @@ const AD_LINKS = [
     name: "Monetag",
     url: "https://omg10.com/4/9813487"
   }
-
 ];
 
 
 /* =========================================================
-   COOLDOWN IKLAN
+   PENGATURAN IKLAN
 ========================================================= */
 
 const AD_COOLDOWN = 60 * 1000;
 
-const AD_TIME_KEY = "lastAdTime";
-
-const AD_INDEX_KEY = "adIndex";
+let lastAdTime = 0;
 
 
 /* =========================================================
-   AMBIL INDEX IKLAN
+   INDEX IKLAN
 ========================================================= */
 
 function getAdIndex() {
 
   let index = parseInt(
-    localStorage.getItem(AD_INDEX_KEY) || "0",
+    localStorage.getItem("adIndex") || "0",
     10
   );
 
@@ -69,149 +51,63 @@ function getAdIndex() {
     index < 0 ||
     index >= AD_LINKS.length
   ) {
-
     index = 0;
-
   }
 
   return index;
-
 }
 
 
 /* =========================================================
-   CEK COOLDOWN
-========================================================= */
-
-function canOpenAd() {
-
-  const lastTime = parseInt(
-    localStorage.getItem(AD_TIME_KEY) || "0",
-    10
-  );
-
-  const now = Date.now();
-
-  return (
-    now - lastTime >= AD_COOLDOWN
-  );
-
-}
-
-
-/* =========================================================
-   OPEN AD
+   BUKA IKLAN
 ========================================================= */
 
 function openAd() {
 
-  /*
-    Cek cooldown.
-    Jika belum 60 detik,
-    iklan tidak dibuka lagi.
-  */
+  const now = Date.now();
 
-  if (!canOpenAd()) {
-
+  if (now - lastAdTime < AD_COOLDOWN) {
     return false;
-
   }
 
+  const validLinks = AD_LINKS.filter(function(item) {
 
-  /*
-    Ambil link iklan yang valid.
-  */
+    return (
+      item &&
+      typeof item.url === "string" &&
+      /^https?:\/\//i.test(item.url)
+    );
 
-  const validLinks =
-    AD_LINKS.filter(function(item) {
-
-      return (
-        item &&
-        typeof item.url === "string" &&
-        /^https?:\/\//i.test(item.url)
-      );
-
-    });
-
+  });
 
   if (!validLinks.length) {
-
     return false;
-
   }
-
-
-  /*
-    Ambil index iklan.
-  */
 
   let index = getAdIndex();
 
-
   if (index >= validLinks.length) {
-
     index = 0;
-
   }
 
-
-  const selected =
-    validLinks[index];
-
-
-  /*
-    Simpan iklan berikutnya.
-
-    0 = Adsterra
-    1 = Kadam
-    2 = Monetag
-  */
+  const selected = validLinks[index];
 
   localStorage.setItem(
-    AD_INDEX_KEY,
+    "adIndex",
     String(
-      (index + 1) %
-      validLinks.length
+      (index + 1) % validLinks.length
     )
   );
 
+  lastAdTime = now;
 
-  /*
-    Simpan waktu iklan terakhir.
-  */
-
-  localStorage.setItem(
-    AD_TIME_KEY,
-    String(Date.now())
+  const newWindow = window.open(
+    selected.url,
+    "_blank",
+    "noopener,noreferrer"
   );
 
-
-  /*
-    Buka iklan pada tab baru.
-    Pemanggilan terjadi dari klik user.
-  */
-
-  const newWindow =
-    window.open(
-      selected.url,
-      "_blank",
-      "noopener,noreferrer"
-    );
-
-
-  /*
-    Jika browser memblokir popup.
-  */
-
-  if (!newWindow) {
-
-    return false;
-
-  }
-
-
-  return true;
-
+  return !!newWindow;
 }
 
 
@@ -223,192 +119,56 @@ async function loadVideos() {
 
   try {
 
-    const response =
-      await fetch(
-        "videos.json?v=" +
-        Date.now(),
-        {
-          cache: "no-store"
-        }
-      );
-
+    const response = await fetch(
+      "./videos.json",
+      {
+        cache: "no-store"
+      }
+    );
 
     if (!response.ok) {
-
       throw new Error(
-        "videos.json tidak ditemukan. HTTP " +
-        response.status
+        "videos.json tidak ditemukan."
       );
-
     }
 
+    const videos = await response.json();
 
-    const data =
-      await response.json();
-
-
-    /*
-      videos.json wajib berupa array.
-    */
-
-    if (!Array.isArray(data)) {
-
+    if (!Array.isArray(videos)) {
       throw new Error(
         "Format videos.json tidak valid."
       );
-
     }
-
-
-    /*
-      Normalisasi data video.
-
-      Format utama:
-      id
-      title
-      url
-      description
-
-      "file" juga diterima sebagai
-      fallback supaya data lama
-      tidak langsung rusak.
-    */
-
-    const videos =
-      data
-        .map(function(video, index) {
-
-          if (!video) {
-
-            return null;
-
-          }
-
-
-          return {
-
-            id:
-              video.id ??
-              index + 1,
-
-            title:
-              video.title ||
-              "Video Viral",
-
-            url:
-              video.url ||
-              video.file ||
-              "",
-
-            description:
-              video.description ||
-              "Selamat menonton."
-
-          };
-
-        })
-
-        .filter(function(video) {
-
-          return (
-            video &&
-            typeof video.url === "string" &&
-            video.url.trim() !== ""
-          );
-
-        });
-
-
-    /*
-      Pastikan video tersedia.
-    */
 
     if (!videos.length) {
-
       throw new Error(
-        "Tidak ada video yang tersedia."
+        "videos.json kosong."
       );
-
     }
-
-
-    /*
-      Tampilkan daftar video
-      jika berada di index.html.
-    */
 
     renderVideoList(videos);
 
-
-    /*
-      Tampilkan player
-      jika berada di player.html.
-    */
-
     renderPlayer(videos);
 
-  }
-
-  catch (error) {
+  } catch (error) {
 
     console.error(
-      "Gagal memuat videos.json:",
+      "Gagal memuat video:",
       error
     );
 
-
     const list =
-      document.getElementById(
-        "videoList"
-      );
-
+      document.getElementById("videoList");
 
     if (list) {
 
       list.innerHTML = `
-
         <div class="error-message">
-
           Video belum dapat dimuat.
-
-          <br><br>
-
-          Pastikan file
-          <strong>videos.json</strong>
-          berada di folder yang sama
-          dengan index.html.
-
+          <br>
+          Periksa file videos.json.
         </div>
-
       `;
-
-    }
-
-
-    const title =
-      document.getElementById(
-        "videoTitle"
-      );
-
-
-    const description =
-      document.getElementById(
-        "videoDescription"
-      );
-
-
-    if (title) {
-
-      title.textContent =
-        "Video tidak dapat dimuat";
-
-    }
-
-
-    if (description) {
-
-      description.textContent =
-        "Periksa file videos.json.";
 
     }
 
@@ -418,200 +178,130 @@ async function loadVideos() {
 
 
 /* =========================================================
-   VIDEO LIST
+   DAFTAR VIDEO
 ========================================================= */
 
 function renderVideoList(videos) {
 
   const container =
-    document.getElementById(
-      "videoList"
-    );
-
-
-  /*
-    Kalau bukan halaman index,
-    hentikan fungsi.
-  */
+    document.getElementById("videoList");
 
   if (!container) {
-
     return;
-
   }
-
 
   container.innerHTML = "";
 
+  videos.forEach(function(video, index) {
 
-  videos.forEach(
-    function(video) {
-
-      /*
-        Pastikan URL ada.
-      */
-
-      if (
-        !video ||
-        !video.url
-      ) {
-
-        return;
-
-      }
-
-
-      const card =
-        document.createElement("a");
-
-
-      card.className =
-        "video-card";
-
-
-      /*
-        ID video digunakan
-        untuk player.html.
-      */
-
-      card.href =
-        "player.html?id=" +
-        encodeURIComponent(
-          video.id
-        );
-
-
-      /*
-        Semua isi card dibuat
-        menggunakan DOM supaya
-        lebih aman.
-      */
-
-      const thumb =
-        document.createElement("div");
-
-
-      thumb.className =
-        "thumb";
-
-
-      const preview =
-        document.createElement("video");
-
-
-      preview.src =
-        video.url;
-
-
-      preview.muted = true;
-
-      preview.playsInline = true;
-
-      preview.preload =
-        "metadata";
-
-      preview.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-
-      const playIcon =
-        document.createElement("div");
-
-
-      playIcon.className =
-        "play-icon";
-
-
-      playIcon.textContent =
-        "▶";
-
-
-      thumb.appendChild(
-        preview
-      );
-
-      thumb.appendChild(
-        playIcon
-      );
-
-
-      const content =
-        document.createElement("div");
-
-
-      content.className =
-        "card-content";
-
-
-      const title =
-        document.createElement("div");
-
-
-      title.className =
-        "card-title";
-
-
-      title.textContent =
-        video.title;
-
-
-      const meta =
-        document.createElement("div");
-
-
-      meta.className =
-        "card-meta";
-
-
-      meta.textContent =
-        "Video #" +
-        video.id;
-
-
-      content.appendChild(
-        title
-      );
-
-      content.appendChild(
-        meta
-      );
-
-
-      card.appendChild(
-        thumb
-      );
-
-      card.appendChild(
-        content
-      );
-
-
-      container.appendChild(
-        card
-      );
-
+    if (
+      !video ||
+      typeof video.file !== "string" ||
+      !video.file.trim()
+    ) {
+      return;
     }
-  );
+
+    const card =
+      document.createElement("a");
+
+    card.className =
+      "video-card";
+
+    card.href =
+      "./player.html?id=" +
+      encodeURIComponent(index);
+
+    const thumb =
+      document.createElement("div");
+
+    thumb.className =
+      "thumb";
+
+    const videoElement =
+      document.createElement("video");
+
+    videoElement.src =
+      video.file;
+
+    videoElement.muted =
+      true;
+
+    videoElement.preload =
+      "metadata";
+
+    videoElement.playsInline =
+      true;
+
+    videoElement.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    const playIcon =
+      document.createElement("div");
+
+    playIcon.className =
+      "play-icon";
+
+    playIcon.textContent =
+      "▶";
+
+    thumb.appendChild(
+      videoElement
+    );
+
+    thumb.appendChild(
+      playIcon
+    );
 
 
-  /*
-    Jika tidak ada video.
-  */
+    const content =
+      document.createElement("div");
 
-  if (
-    !container.children.length
-  ) {
+    content.className =
+      "card-content";
+
+
+    const title =
+      document.createElement("div");
+
+    title.className =
+      "card-title";
+
+    title.textContent =
+      video.title ||
+      "Video Viral";
+
+
+    const meta =
+      document.createElement("div");
+
+    meta.className =
+      "card-meta";
+
+    meta.textContent =
+      "Video #" +
+      (index + 1);
+
+
+    content.appendChild(title);
+    content.appendChild(meta);
+
+    card.appendChild(thumb);
+    card.appendChild(content);
+
+    container.appendChild(card);
+
+  });
+
+
+  if (!container.children.length) {
 
     container.innerHTML = `
-
       <div class="error-message">
-
         Tidak ada video yang tersedia.
-
       </div>
-
     `;
 
   }
@@ -630,27 +320,10 @@ function renderPlayer(videos) {
       "videoPlayer"
     );
 
-
-  /*
-    Kalau bukan player.html,
-    hentikan fungsi.
-  */
-
   if (!player) {
-
     return;
-
   }
 
-
-  /*
-    Ambil parameter ID
-    dari URL.
-
-    Contoh:
-
-    player.html?id=151
-  */
 
   const params =
     new URLSearchParams(
@@ -658,115 +331,106 @@ function renderPlayer(videos) {
     );
 
 
-  const requestedId =
+  const id =
     params.get("id");
 
 
-  /*
-    Cari video berdasarkan ID.
-  */
-
-  let video =
-    videos.find(
-      function(item) {
-
-        return (
-          String(item.id) ===
-          String(requestedId)
-        );
-
-      }
-    );
+  let index =
+    parseInt(id, 10);
 
 
-  /*
-    Jika ID tidak ditemukan,
-    gunakan video pertama.
-  */
-
-  if (!video) {
-
-    video = videos[0];
-
+  if (
+    Number.isNaN(index) ||
+    index < 0 ||
+    index >= videos.length
+  ) {
+    index = 0;
   }
+
+
+  const video =
+    videos[index];
 
 
   if (
     !video ||
-    !video.url
+    typeof video.file !== "string" ||
+    !video.file.trim()
   ) {
 
-    showPlayerError();
+    showPlayerError(
+      "Video tidak ditemukan."
+    );
 
     return;
-
   }
 
 
-  /*
-    Pasang URL video.
-  */
+  /* =========================
+     SET VIDEO
+  ========================== */
 
   player.src =
-    video.url;
+    video.file;
+
+  player.load();
 
 
-  player.preload =
-    "metadata";
-
-
-  /*
-    Judul.
-  */
+  /* =========================
+     TITLE
+  ========================== */
 
   const title =
     document.getElementById(
       "videoTitle"
     );
 
-
   if (title) {
 
     title.textContent =
-      video.title;
+      video.title ||
+      "Video Viral";
 
   }
 
 
-  /*
-    Deskripsi.
-  */
+  /* =========================
+     DESCRIPTION
+  ========================== */
 
   const description =
     document.getElementById(
       "videoDescription"
     );
 
-
   if (description) {
 
     description.textContent =
-      video.description;
+      video.description ||
+      "Selamat menonton.";
 
   }
 
 
-  /*
-    Judul halaman.
-  */
+  /* =========================
+     DOCUMENT TITLE
+  ========================== */
 
   document.title =
-    video.title +
+    (
+      video.title ||
+      "Video Viral"
+    ) +
     " - KUMPULAN VIDEO VIRAL";
 
 
-  /*
-    Related videos.
-  */
+  /* =========================
+     RELATED
+  ========================== */
 
   renderRelated(
     videos,
-    video.id
+    index
   );
 
 }
@@ -778,7 +442,7 @@ function renderPlayer(videos) {
 
 function renderRelated(
   videos,
-  currentId
+  currentIndex
 ) {
 
   const container =
@@ -786,70 +450,108 @@ function renderRelated(
       "relatedVideos"
     );
 
-
   if (!container) {
-
     return;
-
   }
-
 
   container.innerHTML = "";
 
 
-  /*
-    Ambil maksimal 6 video
-    selain video yang sedang dibuka.
-  */
-
   const related =
     videos
-      .filter(function(video) {
+      .map(function(video, index) {
+
+        return {
+          video: video,
+          index: index
+        };
+
+      })
+      .filter(function(item) {
 
         return (
-          String(video.id) !==
-          String(currentId)
+          item.index !==
+          currentIndex
         );
 
       })
       .slice(0, 6);
 
 
-  related.forEach(
-    function(video) {
+  related.forEach(function(item) {
 
-      const link =
-        document.createElement("a");
-
-
-      link.className =
-        "related-card";
-
-
-      link.href =
-        "player.html?id=" +
-        encodeURIComponent(
-          video.id
-        );
+    if (
+      !item.video ||
+      !item.video.file
+    ) {
+      return;
+    }
 
 
-      link.textContent =
-        "▶ " +
-        video.title;
+    const link =
+      document.createElement("a");
+
+    link.className =
+      "related-card";
 
 
-      container.appendChild(
-        link
+    link.href =
+      "./player.html?id=" +
+      encodeURIComponent(
+        item.index
       );
 
-    }
-  );
+
+    link.textContent =
+      "▶ " +
+      (
+        item.video.title ||
+        "Video Viral"
+      );
+
+
+    container.appendChild(
+      link
+    );
+
+  });
 
 }
 
 
 /* =========================================================
-   TOMBOL TONTON VIDEO
+   ERROR PLAYER
+========================================================= */
+
+function showPlayerError(message) {
+
+  const title =
+    document.getElementById(
+      "videoTitle"
+    );
+
+  const description =
+    document.getElementById(
+      "videoDescription"
+    );
+
+
+  if (title) {
+    title.textContent =
+      "Video tidak tersedia";
+  }
+
+
+  if (description) {
+    description.textContent =
+      message;
+  }
+
+}
+
+
+/* =========================================================
+   TOMBOL TONTON
 ========================================================= */
 
 document.addEventListener(
@@ -861,48 +563,35 @@ document.addEventListener(
         "#watchButton"
       );
 
-
     if (!button) {
-
       return;
-
     }
 
 
-    /*
-      Iklan hanya dicoba
-      setelah user menekan
-      tombol Tonton Video.
-    */
+    /* =========================
+       IKLAN
+    ========================== */
 
     openAd();
 
 
-    /*
-      Jalankan video.
-    */
+    /* =========================
+       PLAY VIDEO
+    ========================== */
 
     const player =
       document.getElementById(
         "videoPlayer"
       );
 
-
     if (!player) {
-
       return;
-
     }
 
 
     const playPromise =
       player.play();
 
-
-    /*
-      Beberapa browser mengembalikan
-      Promise dari play().
-    */
 
     if (
       playPromise &&
@@ -911,62 +600,13 @@ document.addEventListener(
     ) {
 
       playPromise.catch(
-        function(error) {
-
-          console.log(
-            "Video belum dapat diputar:",
-            error
-          );
-
-        }
+        function() {}
       );
 
     }
 
-
-    /*
-      Tombol tetap tersedia.
-      Tidak dipaksa hilang.
-    */
-
   }
 );
-
-
-/* =========================================================
-   ERROR PLAYER
-========================================================= */
-
-function showPlayerError() {
-
-  const title =
-    document.getElementById(
-      "videoTitle"
-    );
-
-
-  const description =
-    document.getElementById(
-      "videoDescription"
-    );
-
-
-  if (title) {
-
-    title.textContent =
-      "Video tidak ditemukan";
-
-  }
-
-
-  if (description) {
-
-    description.textContent =
-      "Video yang diminta tidak tersedia.";
-
-  }
-
-}
 
 
 /* =========================================================
