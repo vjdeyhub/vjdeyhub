@@ -11,11 +11,11 @@
 const SMARTLINKS = [
   {
     name: "Adsterra",
-    url: "https://viiukuhe.com/dc/?blockID=427920"
+    url: "https://omg10.com/4/9813487"
   },
   {
     name: "Kadam",
-    url: "https://conductivebreeds.com/ra35mrxpj?key=a22b76d988f5c2de1a58d61240df16f0"
+    url: "https://omg10.com/4/9813487"
   },
   {
     name: "Monetag",
