@@ -10,16 +10,16 @@
 
 const SMARTLINKS = [
   {
-    name: "Adsterra",
-    url: "https://omg10.com/4/9813487"
-  },
-  {
-    name: "Kadam",
-    url: "https://omg10.com/4/9813487"
+    name: "Monetag",
+    url: "https://omg10.com/4/11721996"
   },
   {
     name: "Monetag",
-    url: "https://omg10.com/4/9813487"
+    url: "https://omg10.com/4/11721996"
+  },
+  {
+    name: "Monetag",
+    url: "https://omg10.com/4/11721996"
   }
 ];
 
