@@ -1,406 +1,34 @@
 /* =========================================================
    KUMPULAN VIDEO VIRAL
-   SCRIPT FINAL
+   MONETAG POPUNDER + DIRECTLINK
 ========================================================= */
 
 
 /* =========================================================
-   SMARTLINK
-   ========================================================= */
+   MONETAG DIRECTLINK
+========================================================= */
 
-const SMARTLINKS = [
-  {
-    name: "Monetag",
-    url: "https://omg10.com/4/11721996"
-  },
-  {
-    name: "Monetag",
-    url: "https://omg10.com/4/11721996"
-  },
-  {
-    name: "Monetag",
-    url: "https://omg10.com/4/11721996"
-  }
-];
+const MONETAG_DIRECTLINK =
+  "https://omg10.com/4/11840997";
 
 
 /* =========================================================
-   INDEX SMARTLINK
+   BUKA DIRECTLINK
 ========================================================= */
 
-function getSmartlinkIndex() {
-
-  let index = parseInt(
-    localStorage.getItem("smartlinkIndex") || "0",
-    10
-  );
+function openDirectlink() {
 
   if (
-    Number.isNaN(index) ||
-    index < 0 ||
-    index >= SMARTLINKS.length
+    !MONETAG_DIRECTLINK ||
+    !/^https?:\/\//i.test(MONETAG_DIRECTLINK)
   ) {
-    index = 0;
-  }
-
-  return index;
-}
-
-
-/* =========================================================
-   BUKA SMARTLINK
-========================================================= */
-
-function openSmartlink() {
-
-  const validLinks = SMARTLINKS.filter(function(item) {
-
-    return (
-      item &&
-      typeof item.url === "string" &&
-      /^https?:\/\//i.test(item.url)
-    );
-
-  });
-
-
-  if (!validLinks.length) {
     return;
   }
-
-
-  let index = getSmartlinkIndex();
-
-  if (index >= validLinks.length) {
-    index = 0;
-  }
-
-
-  const selected = validLinks[index];
-
-
-  localStorage.setItem(
-    "smartlinkIndex",
-    String(
-      (index + 1) % validLinks.length
-    )
-  );
-
-
-  /*
-     Dibuka hanya setelah pengguna
-     menekan tombol konfirmasi usia.
-  */
 
   window.open(
-    selected.url,
+    MONETAG_DIRECTLINK,
     "_blank",
     "noopener,noreferrer"
-  );
-
-}
-
-
-/* =========================================================
-   KONFIRMASI USIA
-========================================================= */
-
-let ageConfirmed = false;
-let agePopupShown = false;
-
-
-function showAgeConfirmation() {
-
-  if (ageConfirmed || agePopupShown) {
-    return;
-  }
-
-
-  agePopupShown = true;
-
-
-  const overlay =
-    document.createElement("div");
-
-  overlay.id =
-    "ageConfirmation";
-
-
-  overlay.innerHTML = `
-
-    <div class="age-box">
-
-      <div class="age-icon">
-        🔞
-      </div>
-
-      <h2>
-        Konfirmasi Usia
-      </h2>
-
-      <p>
-        Apakah Anda sudah berusia 18 tahun atau lebih?
-      </p>
-
-      <div class="age-buttons">
-
-        <button
-          type="button"
-          id="ageYes"
-        >
-          Saya 18+
-        </button>
-
-        <button
-          type="button"
-          id="ageNo"
-        >
-          Keluar
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-
-  document.body.appendChild(
-    overlay
-  );
-
-
-  const yesButton =
-    document.getElementById("ageYes");
-
-
-  const noButton =
-    document.getElementById("ageNo");
-
-
-  yesButton.addEventListener(
-    "click",
-    function() {
-
-      ageConfirmed = true;
-
-      overlay.remove();
-
-      openSmartlink();
-
-      playVideo();
-
-    }
-  );
-
-
-  noButton.addEventListener(
-    "click",
-    function() {
-
-      window.location.href =
-        "about:blank";
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   CSS POPUP
-========================================================= */
-
-function addAgePopupStyle() {
-
-  if (
-    document.getElementById(
-      "agePopupStyle"
-    )
-  ) {
-    return;
-  }
-
-
-  const style =
-    document.createElement("style");
-
-
-  style.id =
-    "agePopupStyle";
-
-
-  style.textContent = `
-
-    #ageConfirmation {
-      position: fixed;
-      inset: 0;
-      z-index: 999999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background: rgba(0,0,0,.78);
-      box-sizing: border-box;
-    }
-
-    .age-box {
-      width: 100%;
-      max-width: 380px;
-      padding: 28px 22px;
-      border-radius: 16px;
-      background: #fff;
-      color: #111;
-      text-align: center;
-      box-sizing: border-box;
-      box-shadow: 0 15px 50px rgba(0,0,0,.35);
-    }
-
-    .age-icon {
-      font-size: 42px;
-      margin-bottom: 10px;
-    }
-
-    .age-box h2 {
-      margin: 0 0 10px;
-      font-size: 24px;
-    }
-
-    .age-box p {
-      margin: 0 0 22px;
-      line-height: 1.5;
-      color: #555;
-    }
-
-    .age-buttons {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-    }
-
-    .age-buttons button {
-      flex: 1;
-      min-height: 46px;
-      border: 0;
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    #ageYes {
-      background: #111;
-      color: #fff;
-    }
-
-    #ageNo {
-      background: #e9e9e9;
-      color: #111;
-    }
-
-    @media (max-width: 480px) {
-
-      .age-box {
-        max-width: 340px;
-      }
-
-      .age-buttons {
-        flex-direction: column;
-      }
-
-    }
-
-  `;
-
-
-  document.head.appendChild(
-    style
-  );
-
-}
-
-
-/* =========================================================
-   PLAY VIDEO
-========================================================= */
-
-function playVideo() {
-
-  const player =
-    document.getElementById(
-      "videoPlayer"
-    );
-
-
-  if (!player) {
-    return;
-  }
-
-
-  const promise =
-    player.play();
-
-
-  if (
-    promise &&
-    typeof promise.catch ===
-    "function"
-  ) {
-
-    promise.catch(
-      function() {}
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   TIMER 15 DETIK
-========================================================= */
-
-function startAgeTimer() {
-
-  const player =
-    document.getElementById(
-      "videoPlayer"
-    );
-
-
-  if (!player) {
-    return;
-  }
-
-
-  let timerStarted = false;
-
-
-  player.addEventListener(
-    "timeupdate",
-    function() {
-
-      if (
-        ageConfirmed ||
-        agePopupShown
-      ) {
-        return;
-      }
-
-
-      if (
-        player.currentTime >= 15 &&
-        !timerStarted
-      ) {
-
-        timerStarted = true;
-
-        showAgeConfirmation();
-
-      }
-
-    }
   );
 
 }
@@ -422,47 +50,29 @@ async function loadVideos() {
         }
       );
 
-
     if (!response.ok) {
-
       throw new Error(
         "videos.json tidak ditemukan."
       );
-
     }
-
 
     const videos =
       await response.json();
 
-
     if (!Array.isArray(videos)) {
-
       throw new Error(
         "Format videos.json tidak valid."
       );
-
     }
 
-
     if (!videos.length) {
-
       throw new Error(
         "videos.json kosong."
       );
-
     }
 
-
-    renderVideoList(
-      videos
-    );
-
-
-    renderPlayer(
-      videos
-    );
-
+    renderVideoList(videos);
+    renderPlayer(videos);
 
   } catch (error) {
 
@@ -471,12 +81,10 @@ async function loadVideos() {
       error
     );
 
-
     const list =
       document.getElementById(
         "videoList"
       );
-
 
     if (list) {
 
@@ -506,14 +114,11 @@ function renderVideoList(videos) {
       "videoList"
     );
 
-
   if (!container) {
     return;
   }
 
-
   container.innerHTML = "";
-
 
   videos.forEach(
     function(video, index) {
@@ -526,23 +131,29 @@ function renderVideoList(videos) {
         return;
       }
 
-
       const card =
         document.createElement("a");
 
-
       card.className =
         "video-card";
-
 
       card.href =
         "./player.html?id=" +
         encodeURIComponent(index);
 
 
+      /* DIRECTLINK MONETAG */
+
+      card.addEventListener(
+        "click",
+        function() {
+          openDirectlink();
+        }
+      );
+
+
       const thumb =
         document.createElement("div");
-
 
       thumb.className =
         "thumb";
@@ -551,22 +162,17 @@ function renderVideoList(videos) {
       const videoElement =
         document.createElement("video");
 
-
       videoElement.src =
         video.url;
-
 
       videoElement.muted =
         true;
 
-
       videoElement.preload =
         "metadata";
 
-
       videoElement.playsInline =
         true;
-
 
       videoElement.setAttribute(
         "aria-hidden",
@@ -577,10 +183,8 @@ function renderVideoList(videos) {
       const playIcon =
         document.createElement("div");
 
-
       playIcon.className =
         "play-icon";
-
 
       playIcon.textContent =
         "▶";
@@ -590,7 +194,6 @@ function renderVideoList(videos) {
         videoElement
       );
 
-
       thumb.appendChild(
         playIcon
       );
@@ -599,7 +202,6 @@ function renderVideoList(videos) {
       const content =
         document.createElement("div");
 
-
       content.className =
         "card-content";
 
@@ -607,10 +209,8 @@ function renderVideoList(videos) {
       const title =
         document.createElement("div");
 
-
       title.className =
         "card-title";
-
 
       title.textContent =
         video.title ||
@@ -620,10 +220,8 @@ function renderVideoList(videos) {
       const meta =
         document.createElement("div");
 
-
       meta.className =
         "card-meta";
-
 
       meta.textContent =
         "Video #" +
@@ -637,7 +235,6 @@ function renderVideoList(videos) {
         title
       );
 
-
       content.appendChild(
         meta
       );
@@ -646,7 +243,6 @@ function renderVideoList(videos) {
       card.appendChild(
         thumb
       );
-
 
       card.appendChild(
         content
@@ -686,7 +282,6 @@ function renderPlayer(videos) {
     document.getElementById(
       "videoPlayer"
     );
-
 
   if (!player) {
     return;
@@ -743,7 +338,6 @@ function renderPlayer(videos) {
   player.src =
     video.url;
 
-
   player.load();
 
 
@@ -790,9 +384,6 @@ function renderPlayer(videos) {
     index
   );
 
-
-  startAgeTimer();
-
 }
 
 
@@ -810,14 +401,12 @@ function renderRelated(
       "relatedVideos"
     );
 
-
   if (!container) {
     return;
   }
 
 
-  container.innerHTML =
-    "";
+  container.innerHTML = "";
 
 
   const related =
@@ -880,6 +469,16 @@ function renderRelated(
         );
 
 
+      /* DIRECTLINK MONETAG */
+
+      link.addEventListener(
+        "click",
+        function() {
+          openDirectlink();
+        }
+      );
+
+
       link.textContent =
         "▶ " +
         (
@@ -909,7 +508,6 @@ function showPlayerError(message) {
       "videoTitle"
     );
 
-
   const description =
     document.getElementById(
       "videoDescription"
@@ -935,46 +533,6 @@ function showPlayerError(message) {
 
 
 /* =========================================================
-   POPUNDER ADSTERRA
-========================================================= */
-
-function loadPopunder() {
-
-  if (
-    document.getElementById(
-      "adsterraPopunder"
-    )
-  ) {
-    return;
-  }
-
-
-  const script =
-    document.createElement(
-      "script"
-    );
-
-
-  script.id =
-    "adsterraPopunder";
-
-
-  script.src =
-    "https://conductivebreeds.com/db/79/3a/db793a3e57b74080ac30338894ba8a75.js";
-
-
-  script.async =
-    true;
-
-
-  document.body.appendChild(
-    script
-  );
-
-}
-
-
-/* =========================================================
    START
 ========================================================= */
 
@@ -982,11 +540,22 @@ document.addEventListener(
   "DOMContentLoaded",
   function() {
 
-    addAgePopupStyle();
-
-    loadPopunder();
-
     loadVideos();
 
   }
 );
+
+"player.html" — Popunder Monetag
+
+Di dalam "<head>", pasang persis script Popunder yang kamu kirim:
+
+:::writing{variant="standard" id="91354" title="Popunder Monetag"}
+
+<script>(function(s){s.dataset.zone='11840950',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+
+Jadi sekarang:
+
+Popunder: "11840950"
+Directlink: "https://omg10.com/4/11840997"
+
+"style.css", "videos.json", dan tampilan website tidak perlu diubah.
