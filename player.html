@@ -1,137 +1,108 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta charset="UTF-8">
+    <title>Video Player - Kumpulan Video Viral</title>
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+    <meta name="description" content="Tonton video viral terbaru dan terpopuler.">
 
-  <meta
-    name="robots"
-    content="index,follow"
-  >
+    <!-- =====================================================
+         MONETAG POPUNDER
+         ZONE: 11840950
+    ====================================================== -->
+    <script>
+    (function(s){
+        s.dataset.zone='11840950',
+        s.src='https://al5sm.com/tag.min.js'
+    })([document.documentElement, document.body]
+    .filter(Boolean)
+    .pop()
+    .appendChild(document.createElement('script')))
+    </script>
 
-  <title>Video - KUMPULAN VIDEO VIRAL</title>
-
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
-
-  <!-- =========================
-       MONETAG POPUNDER
-  ========================== -->
-
-<script>(function(s){s.dataset.zone='11840950',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-  
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- =========================
-       HEADER
-  ========================== -->
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-inner">
 
-  <header class="topbar">
+            <a href="index.html" class="logo">
+                KUMPULAN <span>VIDEO VIRAL</span>
+            </a>
 
-    <a
-      href="index.html"
-      class="back-button"
-    >
-      ← Kembali
-    </a>
+            <a href="index.html" class="back-btn">
+                ← Kembali
+            </a>
 
-    <div class="brand">
-
-      <h1>
-        KUMPULAN VIDEO VIRAL
-      </h1>
-
-      <p>
-        Video terbaru dan terpopuler
-      </p>
-
-    </div>
-
-  </header>
+        </div>
+    </header>
 
 
-  <!-- =========================
-       PLAYER PAGE
-  ========================== -->
+    <!-- MAIN -->
+    <main class="player-page">
 
-  <main class="player-page">
+        <!-- VIDEO PLAYER -->
+        <section class="player-container">
 
-    <!-- =========================
-         VIDEO PLAYER
-    ========================== -->
+            <div class="video-wrapper">
 
-    <div class="video-container">
+                <video
+                    id="videoPlayer"
+                    controls
+                    autoplay
+                    playsinline
+                    preload="metadata">
+                </video>
 
-      <video
-        id="videoPlayer"
-        controls
-        playsinline
-        preload="metadata"
-      ></video>
-
-    </div>
+            </div>
 
 
-    <!-- =========================
-         VIDEO INFORMATION
-    ========================== -->
+            <!-- VIDEO INFO -->
+            <div class="video-info">
 
-    <section class="video-title">
+                <h1 id="videoTitle">
+                    Memuat video...
+                </h1>
 
-      <h2 id="videoTitle">
-        Memuat video...
-      </h2>
+                <p id="videoDescription">
+                    Silakan tunggu sebentar...
+                </p>
 
-      <p id="videoDescription">
-        Selamat menonton.
-      </p>
+            </div>
 
-    </section>
-
-
-    <!-- =========================
-         RELATED VIDEOS
-    ========================== -->
-
-    <section class="related-section">
-
-      <h3>
-        Video lainnya
-      </h3>
-
-      <div
-        id="relatedVideos"
-        class="related-grid"
-      ></div>
-
-    </section>
-
-  </main>
+        </section>
 
 
-  <!-- =========================
-       FOOTER
-  ========================== -->
+        <!-- RELATED VIDEOS -->
+        <section class="related-section">
 
-  <div class="bottom-info">
-    © 2026 Kumpulan Video Viral
-  </div>
+            <h2>Video Lainnya</h2>
+
+            <div id="relatedVideos" class="related-grid">
+                <!-- Diisi otomatis oleh script.js -->
+            </div>
+
+        </section>
+
+    </main>
 
 
-  <!-- =========================
-       JAVASCRIPT
-  ========================== -->
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>
+            © 2026 Kumpulan Video Viral
+        </p>
+    </footer>
 
-  <script src="script.js"></script>
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
 
 </body>
 </html>
