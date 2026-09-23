@@ -1,561 +1,672 @@
-/* =========================================================
-   KUMPULAN VIDEO VIRAL
-   MONETAG POPUNDER + DIRECTLINK
-========================================================= */
+// ==========================================
+// KUMPULAN VIDEO VIRAL
+// SCRIPT.JS
+// ==========================================
+
+// Monetag Directlink
+const MONETAG_DIRECTLINK = "https://omg10.com/4/11840997";
+
+let videos = [];
 
 
-/* =========================================================
-   MONETAG DIRECTLINK
-========================================================= */
-
-const MONETAG_DIRECTLINK =
-  "https://omg10.com/4/11840997";
-
-
-/* =========================================================
-   BUKA DIRECTLINK
-========================================================= */
+// ==========================================
+// MONETAG DIRECTLINK
+// ==========================================
 
 function openDirectlink() {
-
-  if (
-    !MONETAG_DIRECTLINK ||
-    !/^https?:\/\//i.test(MONETAG_DIRECTLINK)
-  ) {
-    return;
-  }
-
-  window.open(
-    MONETAG_DIRECTLINK,
-    "_blank",
-    "noopener,noreferrer"
-  );
-
+    try {
+        window.open(
+            MONETAG_DIRECTLINK,
+            "_blank",
+            "noopener,noreferrer"
+        );
+    } catch (error) {
+        console.error("Directlink error:", error);
+    }
 }
 
 
-/* =========================================================
-   LOAD VIDEOS.JSON
-========================================================= */
+// ==========================================
+// ESCAPE HTML
+// ==========================================
+
+function escapeHTML(text) {
+    if (text === undefined || text === null) {
+        return "";
+    }
+
+    const div = document.createElement("div");
+    div.textContent = String(text);
+
+    return div.innerHTML;
+}
+
+
+// ==========================================
+// LOAD VIDEOS.JSON
+// ==========================================
 
 async function loadVideos() {
 
-  try {
+    const videoList = document.getElementById("videoList");
 
-    const response =
-      await fetch(
-        "./videos.json",
-        {
-          cache: "no-store"
-        }
-      );
-
-    if (!response.ok) {
-      throw new Error(
-        "videos.json tidak ditemukan."
-      );
-    }
-
-    const videos =
-      await response.json();
-
-    if (!Array.isArray(videos)) {
-      throw new Error(
-        "Format videos.json tidak valid."
-      );
-    }
-
-    if (!videos.length) {
-      throw new Error(
-        "videos.json kosong."
-      );
-    }
-
-    renderVideoList(videos);
-    renderPlayer(videos);
-
-  } catch (error) {
-
-    console.error(
-      "Gagal memuat video:",
-      error
-    );
-
-    const list =
-      document.getElementById(
-        "videoList"
-      );
-
-    if (list) {
-
-      list.innerHTML = `
-        <div class="error-message">
-          Video belum dapat dimuat.
-          <br>
-          Periksa file videos.json.
-        </div>
-      `;
-
-    }
-
-  }
-
-}
-
-
-/* =========================================================
-   DAFTAR VIDEO
-========================================================= */
-
-function renderVideoList(videos) {
-
-  const container =
-    document.getElementById(
-      "videoList"
-    );
-
-  if (!container) {
-    return;
-  }
-
-  container.innerHTML = "";
-
-  videos.forEach(
-    function(video, index) {
-
-      if (
-        !video ||
-        typeof video.url !== "string" ||
-        !video.url.trim()
-      ) {
+    if (!videoList) {
+        console.error("Element #videoList tidak ditemukan.");
         return;
-      }
-
-      const card =
-        document.createElement("a");
-
-      card.className =
-        "video-card";
-
-      card.href =
-        "./player.html?id=" +
-        encodeURIComponent(index);
-
-
-      /* DIRECTLINK MONETAG */
-
-      card.addEventListener(
-        "click",
-        function() {
-          openDirectlink();
-        }
-      );
-
-
-      const thumb =
-        document.createElement("div");
-
-      thumb.className =
-        "thumb";
-
-
-      const videoElement =
-        document.createElement("video");
-
-      videoElement.src =
-        video.url;
-
-      videoElement.muted =
-        true;
-
-      videoElement.preload =
-        "metadata";
-
-      videoElement.playsInline =
-        true;
-
-      videoElement.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-
-      const playIcon =
-        document.createElement("div");
-
-      playIcon.className =
-        "play-icon";
-
-      playIcon.textContent =
-        "▶";
-
-
-      thumb.appendChild(
-        videoElement
-      );
-
-      thumb.appendChild(
-        playIcon
-      );
-
-
-      const content =
-        document.createElement("div");
-
-      content.className =
-        "card-content";
-
-
-      const title =
-        document.createElement("div");
-
-      title.className =
-        "card-title";
-
-      title.textContent =
-        video.title ||
-        "Video Viral";
-
-
-      const meta =
-        document.createElement("div");
-
-      meta.className =
-        "card-meta";
-
-      meta.textContent =
-        "Video #" +
-        (
-          video.id ||
-          index + 1
-        );
-
-
-      content.appendChild(
-        title
-      );
-
-      content.appendChild(
-        meta
-      );
-
-
-      card.appendChild(
-        thumb
-      );
-
-      card.appendChild(
-        content
-      );
-
-
-      container.appendChild(
-        card
-      );
-
     }
-  );
 
-
-  if (
-    !container.children.length
-  ) {
-
-    container.innerHTML = `
-      <div class="error-message">
-        Tidak ada video yang tersedia.
-      </div>
+    videoList.innerHTML = `
+        <div style="
+            width:100%;
+            padding:40px 20px;
+            text-align:center;
+            color:#aaa;
+        ">
+            Memuat video...
+        </div>
     `;
 
-  }
+    try {
 
+        const response = await fetch(
+            "videos.json?v=" + Date.now(),
+            {
+                cache: "no-store"
+            }
+        );
+
+        console.log(
+            "videos.json status:",
+            response.status
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                "videos.json tidak ditemukan. HTTP " +
+                response.status
+            );
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+            throw new Error(
+                "Format videos.json tidak valid."
+            );
+        }
+
+        videos = data.filter(video =>
+            video &&
+            video.id !== undefined &&
+            video.url
+        );
+
+        console.log(
+            "Jumlah video berhasil dimuat:",
+            videos.length
+        );
+
+        if (videos.length === 0) {
+
+            videoList.innerHTML = `
+                <div style="
+                    width:100%;
+                    padding:40px 20px;
+                    text-align:center;
+                    color:#aaa;
+                ">
+                    Belum ada video.
+                </div>
+            `;
+
+            return;
+        }
+
+        renderVideoList();
+
+    } catch (error) {
+
+        console.error(
+            "Gagal memuat videos.json:",
+            error
+        );
+
+        videoList.innerHTML = `
+            <div style="
+                width:100%;
+                padding:40px 20px;
+                text-align:center;
+                color:#ff5555;
+            ">
+                <div style="
+                    font-size:40px;
+                    margin-bottom:12px;
+                ">
+                    ⚠️
+                </div>
+
+                <div style="
+                    font-size:17px;
+                    font-weight:bold;
+                    margin-bottom:8px;
+                ">
+                    Video gagal dimuat
+                </div>
+
+                <div style="
+                    font-size:12px;
+                    color:#888;
+                    word-break:break-word;
+                ">
+                    ${escapeHTML(error.message)}
+                </div>
+            </div>
+        `;
+    }
 }
 
 
-/* =========================================================
-   PLAYER
-========================================================= */
+// ==========================================
+// RENDER VIDEO LIST
+// ==========================================
 
-function renderPlayer(videos) {
+function renderVideoList() {
 
-  const player =
-    document.getElementById(
-      "videoPlayer"
-    );
+    const videoList =
+        document.getElementById("videoList");
 
-  if (!player) {
-    return;
-  }
+    if (!videoList) return;
 
+    videoList.innerHTML = "";
 
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
+    videos.forEach((video) => {
 
+        const card =
+            document.createElement("div");
 
-  const id =
-    params.get("id");
+        card.className = "video-card";
 
+        card.innerHTML = `
 
-  let index =
-    parseInt(
-      id,
-      10
-    );
+            <div class="video-thumbnail">
 
+                <video
+                    src="${escapeHTML(video.url)}"
+                    muted
+                    playsinline
+                    preload="metadata"
+                ></video>
 
-  if (
-    Number.isNaN(index) ||
-    index < 0 ||
-    index >= videos.length
-  ) {
+                <div class="play-button">
+                    ▶
+                </div>
 
-    index = 0;
+            </div>
 
-  }
+            <div class="video-info">
 
+                <h3>
+                    ${escapeHTML(video.title)}
+                </h3>
 
-  const video =
-    videos[index];
+                <p>
+                    ${escapeHTML(video.description || "")}
+                </p>
 
-
-  if (
-    !video ||
-    typeof video.url !== "string" ||
-    !video.url.trim()
-  ) {
-
-    showPlayerError(
-      "Video tidak ditemukan."
-    );
-
-    return;
-
-  }
+            </div>
+        `;
 
 
-  player.src =
-    video.url;
+        // ==================================
+        // KLIK VIDEO
+        // ==================================
 
-  player.load();
+        card.addEventListener(
+            "click",
+            function () {
 
+                // Buka Monetag Directlink
+                openDirectlink();
 
-  const title =
-    document.getElementById(
-      "videoTitle"
-    );
+                // Buka halaman player
+                setTimeout(function () {
 
+                    window.location.href =
+                        "player.html?id=" +
+                        encodeURIComponent(video.id);
 
-  if (title) {
+                }, 300);
 
-    title.textContent =
-      video.title ||
-      "Video Viral";
-
-  }
-
-
-  const description =
-    document.getElementById(
-      "videoDescription"
-    );
+            }
+        );
 
 
-  if (description) {
+        videoList.appendChild(card);
 
-    description.textContent =
-      video.description ||
-      "Selamat menonton.";
-
-  }
-
-
-  document.title =
-    (
-      video.title ||
-      "Video Viral"
-    ) +
-    " - KUMPULAN VIDEO VIRAL";
-
-
-  renderRelated(
-    videos,
-    index
-  );
-
+    });
 }
 
 
-/* =========================================================
-   RELATED VIDEOS
-========================================================= */
+// ==========================================
+// PLAYER
+// ==========================================
 
-function renderRelated(
-  videos,
-  currentIndex
-) {
+async function renderPlayer() {
 
-  const container =
-    document.getElementById(
-      "relatedVideos"
-    );
+    const player =
+        document.getElementById("videoPlayer");
 
-  if (!container) {
-    return;
-  }
+    if (!player) return;
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const id = params.get("id");
+
+    if (!id) {
+
+        console.error(
+            "ID video tidak ditemukan."
+        );
+
+        return;
+    }
 
 
-  container.innerHTML = "";
+    try {
 
+        const response = await fetch(
+            "videos.json?v=" + Date.now(),
+            {
+                cache: "no-store"
+            }
+        );
 
-  const related =
-    videos
-      .map(
-        function(video, index) {
+        if (!response.ok) {
 
-          return {
-            video: video,
-            index: index
-          };
-
-        }
-      )
-      .filter(
-        function(item) {
-
-          return (
-            item.index !==
-            currentIndex
-          );
-
-        }
-      )
-      .filter(
-        function(item) {
-
-          return (
-            item.video &&
-            typeof item.video.url ===
-            "string" &&
-            item.video.url.trim()
-          );
+            throw new Error(
+                "videos.json HTTP " +
+                response.status
+            );
 
         }
-      )
-      .slice(
-        0,
-        6
-      );
+
+        const data =
+            await response.json();
 
 
-  related.forEach(
-    function(item) {
+        const video =
+            data.find(
+                item =>
+                    String(item.id) ===
+                    String(id)
+            );
 
-      const link =
-        document.createElement(
-          "a"
+
+        if (!video) {
+
+            console.error(
+                "Video dengan ID " +
+                id +
+                " tidak ditemukan."
+            );
+
+            return;
+        }
+
+
+        // Pasang video
+        player.src = video.url;
+
+        player.load();
+
+
+        // Judul
+        const title =
+            document.getElementById(
+                "videoTitle"
+            );
+
+        if (title) {
+
+            title.textContent =
+                video.title || "Video Viral";
+
+        }
+
+
+        // Deskripsi
+        const description =
+            document.getElementById(
+                "videoDescription"
+            );
+
+        if (description) {
+
+            description.textContent =
+                video.description || "";
+
+        }
+
+
+        // ==================================
+        // VIDEO RELATED
+        // ==================================
+
+        renderRelated(
+            data,
+            video.id
         );
 
 
-      link.className =
-        "related-card";
+    } catch (error) {
 
-
-      link.href =
-        "./player.html?id=" +
-        encodeURIComponent(
-          item.index
+        console.error(
+            "Player error:",
+            error
         );
-
-
-      /* DIRECTLINK MONETAG */
-
-      link.addEventListener(
-        "click",
-        function() {
-          openDirectlink();
-        }
-      );
-
-
-      link.textContent =
-        "▶ " +
-        (
-          item.video.title ||
-          "Video Viral"
-        );
-
-
-      container.appendChild(
-        link
-      );
 
     }
-  );
+}
+
+
+// ==========================================
+// RELATED VIDEOS
+// ==========================================
+
+function renderRelated(
+    data,
+    currentId
+) {
+
+    const relatedContainer =
+        document.getElementById(
+            "relatedVideos"
+        );
+
+    if (!relatedContainer) return;
+
+
+    const related =
+        data.filter(
+            video =>
+                String(video.id) !==
+                String(currentId)
+        );
+
+
+    relatedContainer.innerHTML = "";
+
+
+    related.forEach(video => {
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "related-video";
+
+
+        item.innerHTML = `
+
+            <div class="related-thumb">
+
+                <video
+                    src="${escapeHTML(video.url)}"
+                    muted
+                    playsinline
+                    preload="metadata"
+                ></video>
+
+                <span class="related-play">
+                    ▶
+                </span>
+
+            </div>
+
+            <div class="related-info">
+
+                <h4>
+                    ${escapeHTML(video.title)}
+                </h4>
+
+                <p>
+                    ${escapeHTML(
+                        video.description || ""
+                    )}
+                </p>
+
+            </div>
+
+        `;
+
+
+        item.addEventListener(
+            "click",
+            function () {
+
+                openDirectlink();
+
+                setTimeout(function () {
+
+                    window.location.href =
+                        "player.html?id=" +
+                        encodeURIComponent(
+                            video.id
+                        );
+
+                }, 300);
+
+            }
+        );
+
+
+        relatedContainer.appendChild(item);
+
+    });
 
 }
 
 
-/* =========================================================
-   ERROR PLAYER
-========================================================= */
+// ==========================================
+// SEARCH VIDEO
+// ==========================================
 
-function showPlayerError(message) {
+function searchVideos(keyword) {
 
-  const title =
-    document.getElementById(
-      "videoTitle"
-    );
+    const videoList =
+        document.getElementById(
+            "videoList"
+        );
 
-  const description =
-    document.getElementById(
-      "videoDescription"
-    );
+    if (!videoList) return;
 
 
-  if (title) {
-
-    title.textContent =
-      "Video tidak tersedia";
-
-  }
+    const query =
+        String(keyword || "")
+        .trim()
+        .toLowerCase();
 
 
-  if (description) {
+    if (!query) {
 
-    description.textContent =
-      message;
+        renderVideoList();
+        return;
 
-  }
+    }
+
+
+    const results =
+        videos.filter(video => {
+
+            const title =
+                String(
+                    video.title || ""
+                ).toLowerCase();
+
+            const description =
+                String(
+                    video.description || ""
+                ).toLowerCase();
+
+            return (
+                title.includes(query) ||
+                description.includes(query)
+            );
+
+        });
+
+
+    videoList.innerHTML = "";
+
+
+    if (results.length === 0) {
+
+        videoList.innerHTML = `
+            <div style="
+                width:100%;
+                padding:40px 20px;
+                text-align:center;
+                color:#aaa;
+            ">
+                Video tidak ditemukan.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    results.forEach(video => {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "video-card";
+
+
+        card.innerHTML = `
+
+            <div class="video-thumbnail">
+
+                <video
+                    src="${escapeHTML(video.url)}"
+                    muted
+                    playsinline
+                    preload="metadata"
+                ></video>
+
+                <div class="play-button">
+                    ▶
+                </div>
+
+            </div>
+
+            <div class="video-info">
+
+                <h3>
+                    ${escapeHTML(video.title)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        video.description || ""
+                    )}
+                </p>
+
+            </div>
+
+        `;
+
+
+        card.addEventListener(
+            "click",
+            function () {
+
+                openDirectlink();
+
+                setTimeout(function () {
+
+                    window.location.href =
+                        "player.html?id=" +
+                        encodeURIComponent(
+                            video.id
+                        );
+
+                }, 300);
+
+            }
+        );
+
+
+        videoList.appendChild(card);
+
+    });
 
 }
 
 
-/* =========================================================
-   START
-========================================================= */
+// ==========================================
+// SEARCH INPUT
+// ==========================================
 
 document.addEventListener(
-  "DOMContentLoaded",
-  function() {
+    "DOMContentLoaded",
+    function () {
 
-    loadVideos();
+        console.log(
+            "KUMPULAN VIDEO VIRAL - SCRIPT AKTIF"
+        );
 
-  }
+
+        // Halaman index
+        if (
+            document.getElementById(
+                "videoList"
+            )
+        ) {
+
+            loadVideos();
+
+        }
+
+
+        // Halaman player
+        if (
+            document.getElementById(
+                "videoPlayer"
+            )
+        ) {
+
+            renderPlayer();
+
+        }
+
+
+        // Search
+        const searchInput =
+            document.getElementById(
+                "searchInput"
+            );
+
+
+        if (searchInput) {
+
+            searchInput.addEventListener(
+                "input",
+                function () {
+
+                    searchVideos(
+                        this.value
+                    );
+
+                }
+            );
+
+        }
+
+    }
 );
-
-"player.html" — Popunder Monetag
-
-Di dalam "<head>", pasang persis script Popunder yang kamu kirim:
-
-:::writing{variant="standard" id="91354" title="Popunder Monetag"}
-
-<script>(function(s){s.dataset.zone='11840950',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-
-Jadi sekarang:
-
-Popunder: "11840950"
-Directlink: "https://omg10.com/4/11840997"
-
-"style.css", "videos.json", dan tampilan website tidak perlu diubah.
